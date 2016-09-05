@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="250dp"
+    android:background="@color/filterColorSelected">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dp">
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/clean"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="left|bottom"
+        app:backgroundTint="@color/filterColor"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/clean"
+         />
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/wheel"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="left|bottom"
+        app:backgroundTint="@color/filterColor"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/wheel"
+         />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/paid"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="left|bottom"
+        app:backgroundTint="@color/filterColor"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/paid"
+         />
+
+
+
+</LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adicionar novo banheiro"
+        android:id="@+id/confirm"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="25dp"/>
+
+
+</LinearLayout>

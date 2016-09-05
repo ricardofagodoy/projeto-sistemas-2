@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/InnerRelativeLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_alignParentBottom="true" >
+    android:layout_alignParentBottom="true"
+    android:visibility="visible">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -13,29 +15,189 @@
         android:paddingBottom="20dp"
         android:layout_alignParentBottom="true">
 
-        <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:id="@+id/waterFilters"
-            android:gravity="left|bottom|center_horizontal"
-            android:src="@drawable/water"
-            android:alpha="1"
-            android:background="@android:color/transparent"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_margin="20dp"/>
 
-        <ImageButton
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/ratingWater"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="left|bottom"
+                app:backgroundTint="@color/filterColor"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/neutral"
+                android:visibility="gone"
+                />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/waterHappy"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="left|bottom"
+                app:backgroundTint="@color/filterColor"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/happy"
+                android:visibility="gone" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/waterSad"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="left|bottom"
+                app:backgroundTint="@color/filterColor"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/sad"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/cold"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:id="@+id/toiletFilters"
             android:gravity="left|bottom"
-            android:src="@drawable/toilet"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:background="@android:color/transparent"
-            android:layout_margin="20dp"
-            android:visibility="visible" />
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/cold"
+            android:visibility="gone" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/waterFilters"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/water" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/paid"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/paid"
+            android:visibility="gone" />
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/clean"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/clean"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/ratingToilet"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="left|bottom"
+                app:backgroundTint="@color/filterColor"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/neutral"
+                android:visibility="gone"
+                />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/toiletHappy"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="left|bottom"
+                app:backgroundTint="@color/filterColor"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/happy"
+                android:visibility="gone" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/toiletSad"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="left|bottom"
+                app:backgroundTint="@color/filterColor"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="10dp"
+                android:src="@drawable/sad"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/unisex"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/unisex"
+            android:visibility="gone"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/man"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/man"
+            android:visibility="gone" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/woman"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/woman"
+            android:visibility="gone" />
+
+        </LinearLayout>
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/toiletFilters"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColor"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/toilet" />
 
     </LinearLayout>
 </RelativeLayout>

@@ -29,7 +29,7 @@ public class MapController {
         settings.setCompassEnabled(false);
         settings.setMapToolbarEnabled(true);
 
-        //map.setPadding(0, 480, 0, 0);
+        //map.setPadding(0, 1500, 0, 0);
     }
 
     public void drawInitialPosition() {
@@ -39,7 +39,7 @@ public class MapController {
         map.moveCamera(CameraUpdateFactory.newLatLng(current));
 
         try {
-            map.setMyLocationEnabled(true);
+            map.setMyLocationEnabled(false);
         } catch (SecurityException e) {
             Log.e("ERROR", Log.getStackTraceString(e));
         }
