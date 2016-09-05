@@ -28,8 +28,6 @@ public class MapController {
         settings.setZoomControlsEnabled(false);
         settings.setCompassEnabled(false);
         settings.setMapToolbarEnabled(true);
-
-        //map.setPadding(0, 1500, 0, 0);
     }
 
     public void drawInitialPosition() {
@@ -55,8 +53,8 @@ public class MapController {
         map.addMarker(new MarkerOptions().
                 position(point).
                 icon(BitmapDescriptorFactory.fromBitmap(pin)).
-                title("Nova localização").
-                snippet("Rua Abde, 65")).
+                title("Adicionar novo").
+                snippet("Rua Presidente Bernardes, 1923"+"\n"+"Jardim Vida Nova")).
                 showInfoWindow();
     }
 }

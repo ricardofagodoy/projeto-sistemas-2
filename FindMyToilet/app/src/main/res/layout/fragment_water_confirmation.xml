@@ -3,52 +3,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="350dp"
+    android:layout_width="320dp"
     android:layout_height="250dp"
     android:background="@color/filterColorSelected">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingTop="20dp">
-
+    <android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/filterColorSelected"
+        android:layout_weight="2">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/cold"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:gravity="left|bottom"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         app:backgroundTint="@color/filterColor"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="10dp"
         android:src="@drawable/cold"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="left|center"
+        android:layout_marginLeft="20dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/hot"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:gravity="left|bottom"
         app:backgroundTint="@color/filterColor"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="10dp"
         android:src="@drawable/hot"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center|right"
+        android:layout_marginRight="20dp" />
 
-
-
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>>
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="Adicionar novo bebedouro"
         android:id="@+id/confirm"
+        android:layout_margin="10dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="15dp"/>
-
+        android:layout_weight="3"/>
 
 </LinearLayout>

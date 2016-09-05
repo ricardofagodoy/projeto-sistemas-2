@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_width="350dp"
+    android:layout_width="320dp"
     android:layout_height="250dp"
     android:background="@color/filterColorSelected">
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/toiletType"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:gravity="left|bottom"
         app:backgroundTint="@color/filterColor"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="10dp"
         android:src="@drawable/toilet"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="left|center"
+        android:layout_marginLeft="20dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/waterType"
         android:layout_width="130dp"
         android:layout_height="130dp"
-        android:gravity="left|bottom"
         app:backgroundTint="@color/filterColor"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="10dp"
         android:src="@drawable/water"
-        android:layout_gravity="center_vertical" />
+        android:layout_gravity="center|right"
+        android:layout_marginRight="20dp"/>
 
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>
