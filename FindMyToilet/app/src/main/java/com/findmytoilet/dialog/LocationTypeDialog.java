@@ -1,4 +1,4 @@
-package com.findmytoilet.fragment;
+package com.findmytoilet.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -49,7 +49,7 @@ public class LocationTypeDialog extends Dialog {
             @Override
             public void onClick(View v)
             {
-                new WaterConfirmation(context).show();
+                new WaterConfirmationDialog(context).show();
             }
         });
 

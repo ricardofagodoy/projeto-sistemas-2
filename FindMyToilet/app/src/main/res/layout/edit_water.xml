@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|center_vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Editar Bebedouro"
+        android:id="@+id/title"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/report"
+        android:src="@drawable/report"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"/>
+
+        </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Rua Padre Henrique Melo"
+        android:id="@+id/address"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Bairro Guanabara"
+        android:id="@+id/address2"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"/>
+
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:id="@+id/cold"
+            android:src="@drawable/cold"
+            android:layout_margin="15dp"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editSex"
+            android:src="@drawable/edit"
+            android:layout_gravity="center_vertical|left"
+            android:background="@android:color/transparent" />
+    </TableRow>
+
+
+
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/sad"
+            android:src="@drawable/sad"
+            android:layout_margin="15dp"/>
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/neutral"
+            android:src="@drawable/neutral"
+            android:layout_margin="15dp"/>
+
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/happy"
+            android:src="@drawable/happy"
+            android:layout_margin="15dp"/>
+
+
+
+
+
+    </TableRow>
+
+
+</TableLayout>
+
+</LinearLayout>

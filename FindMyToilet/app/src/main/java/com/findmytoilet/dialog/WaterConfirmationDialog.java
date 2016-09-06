@@ -1,4 +1,4 @@
-package com.findmytoilet.fragment;
+package com.findmytoilet.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,54 +8,55 @@ import android.view.Window;
 
 import com.findmytoilet.R;
 
-public class ToiletSexDialog extends Dialog {
+public class WaterConfirmationDialog extends Dialog {
 
     private Context context;
 
-    public ToiletSexDialog(final Context context)
+    public WaterConfirmationDialog(final Context context)
     {
         super(context);
         this.context = context;
     }
 
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.setContentView(R.layout.fragment_sex);
+        this.setContentView(R.layout.fragment_water_confirmation);
         this.setCancelable(true);
 
         LocationTypeDialog.dialogs.add(this);
 
-        View unisex = findViewById(R.id.unisex);
-        View man = findViewById(R.id.man);
-        View woman = findViewById(R.id.woman);
+        View cold = findViewById(R.id.cold);
+        View hot = findViewById(R.id.hot);
+        View confirm = findViewById(R.id.confirm);
 
-        unisex.setOnClickListener(new View.OnClickListener()
+        cold.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                new ToiletConfirmation(context).show();
+
             }
         });
 
-        man.setOnClickListener(new View.OnClickListener()
+        hot.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                new ToiletConfirmation(context).show();
+
             }
         });
 
-        woman.setOnClickListener(new View.OnClickListener()
+        confirm.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                new ToiletConfirmation(context).show();
+                for (Dialog d : LocationTypeDialog.dialogs)
+                    d.dismiss();
+
+                LocationTypeDialog.dialogs.clear();
             }
         });
 

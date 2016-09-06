@@ -2,32 +2,62 @@ package com.findmytoilet.controller;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.util.Log;
 
 import com.findmytoilet.R;
+import com.findmytoilet.enums.MarkerTags;
 import com.findmytoilet.util.BitmapUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapController {
 
+    private static MapController instance = null;
+
     private GoogleMap map;
     private Context context;
 
-    public MapController(Context ctx, GoogleMap map) {
+    private Marker pin;
+
+    public static MapController getInstance() {
+        return MapController.instance;
+    }
+
+    public static MapController getInstance(Context ctx, GoogleMap map) {
+
+        if (instance == null)
+            MapController.instance = new MapController(ctx, map);
+
+        return MapController.getInstance();
+    }
+
+    protected MapController(Context ctx, GoogleMap map) {
         this.map = map;
         this.context = ctx;
 
-        UiSettings settings = map.getUiSettings();
+        // Create PIN marker
+        Bitmap pinBitmap = BitmapUtils.bitmapFromResource(context, R.drawable.pin);
+        pinBitmap = BitmapUtils.toMapMarkerSize(pinBitmap);
+
+        this.pin = map.addMarker(new MarkerOptions().
+                position(new LatLng(0, 0)).
+                icon(BitmapDescriptorFactory.fromBitmap(pinBitmap)));
+
+        this.pin.setTag(MarkerTags.PIN);
 
         // Map general settings
+        UiSettings settings = map.getUiSettings();
+
         settings.setZoomControlsEnabled(false);
         settings.setCompassEnabled(false);
-        settings.setMapToolbarEnabled(true);
+        settings.setMapToolbarEnabled(false);
+        settings.setMyLocationButtonEnabled(false);
     }
 
     public void drawInitialPosition() {
@@ -37,24 +67,21 @@ public class MapController {
         map.moveCamera(CameraUpdateFactory.newLatLng(current));
 
         try {
-            map.setMyLocationEnabled(false);
+            map.setMyLocationEnabled(true);
         } catch (SecurityException e) {
             Log.e("ERROR", Log.getStackTraceString(e));
         }
 
-        map.setMinZoomPreference(16.0f);
+        map.animateCamera(CameraUpdateFactory.zoomTo(16.0f));
     }
 
-    public void drawNewPin(LatLng point) {
+    public void drawPin(LatLng point) {
+        this.pin.setPosition(point);
+        this.pin.showInfoWindow();
+        this.animateCameraPosition(point);
+    }
 
-        Bitmap pin = BitmapUtils.bitmapFromResource(context, R.drawable.pin);
-        pin = BitmapUtils.toMapMarkerSize(pin);
-
-        map.addMarker(new MarkerOptions().
-                position(point).
-                icon(BitmapDescriptorFactory.fromBitmap(pin)).
-                title("Adicionar novo").
-                snippet("Rua Presidente Bernardes, 1923"+"\n"+"Jardim Vida Nova")).
-                showInfoWindow();
+    public void animateCameraPosition(LatLng latlng) {
+        map.animateCamera(CameraUpdateFactory.newLatLng(latlng));
     }
 }

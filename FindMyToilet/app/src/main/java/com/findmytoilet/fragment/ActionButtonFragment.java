@@ -7,21 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.findmytoilet.R;
+import com.findmytoilet.controller.MapController;
+import com.google.android.gms.maps.model.LatLng;
 
 public class ActionButtonFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ActionButtonFragment() {
-        // Required empty public constructor
-    }
-
-    public static ActionButtonFragment newInstance(String param1, String param2) {
-        ActionButtonFragment fragment = new ActionButtonFragment();
-        return fragment;
-    }
+    public ActionButtonFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,15 +25,22 @@ public class ActionButtonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_action_button, container, false);
-        return view;
-    }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+        View view = inflater.inflate(R.layout.fragment_action_button, container, false);
+
+        View userLocation = view.findViewById(R.id.userLocation);
+
+        userLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                // TODO: GET POSITION FROM GPS
+                LatLng current = new LatLng(-22.832587, -47.052924);
+                MapController.getInstance().animateCameraPosition(current);
+            }
+        });
+
+        return view;
     }
 
     @Override
@@ -47,8 +48,7 @@ public class ActionButtonFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
-        }
+        } else {}
     }
 
     @Override
@@ -58,7 +58,6 @@ public class ActionButtonFragment extends Fragment {
     }
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

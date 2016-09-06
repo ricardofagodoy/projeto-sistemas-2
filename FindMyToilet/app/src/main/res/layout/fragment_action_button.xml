@@ -18,7 +18,7 @@
 
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/waterFilters"
+            android:id="@+id/userLocation"
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:backgroundTint="@color/filterColor"
