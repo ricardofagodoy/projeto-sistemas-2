@@ -2,7 +2,10 @@ package com.findmytoilet.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 
@@ -12,13 +15,18 @@ public class ToiletConfirmationDialog extends Dialog {
 
     private Context context;
 
+    private boolean cleanActive;
+    private boolean paidActive;
+    private boolean wheelActive;
+
     public ToiletConfirmationDialog(final Context context)
     {
         super(context);
         this.context = context;
+        cleanActive = false;
+        paidActive = false;
+        wheelActive = false;
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,17 +36,22 @@ public class ToiletConfirmationDialog extends Dialog {
 
         LocationTypeDialog.dialogs.add(this);
 
-        View clean = findViewById(R.id.clean);
-        View paid = findViewById(R.id.paid);
-        View wheel = findViewById(R.id.wheel);
-        View confirm = findViewById(R.id.confirm);
+        final FloatingActionButton clean = (FloatingActionButton) findViewById(R.id.clean);
+        final FloatingActionButton paid = (FloatingActionButton) findViewById(R.id.paid);
+        final FloatingActionButton wheel = (FloatingActionButton) findViewById(R.id.wheel);
+
+        final View confirm = findViewById(R.id.confirm);
 
         clean.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                int color = cleanActive ? R.color.filterColor : R.color.filterColorSelected;
 
+                cleanActive = !cleanActive;
+
+                clean.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 
@@ -47,7 +60,11 @@ public class ToiletConfirmationDialog extends Dialog {
             @Override
             public void onClick(View v)
             {
+                int color = paidActive ? R.color.filterColor : R.color.filterColorSelected;
 
+                paidActive = !paidActive;
+
+                paid.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 
@@ -56,7 +73,11 @@ public class ToiletConfirmationDialog extends Dialog {
             @Override
             public void onClick(View v)
             {
+                int color = wheelActive ? R.color.filterColor : R.color.filterColorSelected;
 
+                wheelActive = !wheelActive;
+
+                wheel.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 

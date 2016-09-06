@@ -1,10 +1,15 @@
 package com.findmytoilet.activity;
 
+import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+
 import com.findmytoilet.R;
 import com.findmytoilet.callback.AutocompletePlaceCallback;
 import com.findmytoilet.callback.MapCallback;
+import com.findmytoilet.fragment.ActionButtonFragment;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.maps.SupportMapFragment;

@@ -5,33 +5,43 @@
     android:orientation="vertical"
     android:layout_width="320dp"
     android:layout_height="250dp"
-    android:background="@color/filterColorSelected">
+    android:background="@color/backgroundDialog">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Selecione os detalhes"
+        android:id="@+id/textView5"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:textSize="30sp"
+        />
 
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/filterColorSelected"
         android:layout_weight="2">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/cold"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:backgroundTint="@color/filterColor"
         android:src="@drawable/cold"
         android:layout_gravity="left|center"
-        android:layout_marginLeft="20dp" />
+        android:layout_marginLeft="40dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/hot"
-        android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:backgroundTint="@color/filterColor"
         android:src="@drawable/hot"
         android:layout_gravity="center|right"
-        android:layout_marginRight="20dp" />
+        android:layout_marginRight="40dp" />
 
 </android.support.design.widget.CoordinatorLayout>>
 

@@ -3,7 +3,7 @@ package com.findmytoilet.fragment;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +15,8 @@ public class ActionButtonFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public ActionButtonFragment() {}
+    public ActionButtonFragment() {
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,20 @@ public class ActionButtonFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {}
+    }
+
+    public void changeActionState(boolean state) {
+
+        View emergencyButton = this.getView().findViewById(R.id.emergency);
+        View route = this.getView().findViewById(R.id.traceRoute);
+
+        if (state) {
+            emergencyButton.setVisibility(View.GONE);
+            route.setVisibility(View.VISIBLE);
+        } else {
+            emergencyButton.setVisibility(View.VISIBLE);
+            route.setVisibility(View.GONE);
+        }
     }
 
     @Override

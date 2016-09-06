@@ -14,8 +14,7 @@
         android:orientation="vertical"
         android:paddingBottom="20dp"
         android:layout_alignParentBottom="true">
-
-
+        
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,11 +23,11 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/ratingWater"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:gravity="left|bottom"
                 app:backgroundTint="@color/filterColor"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/neutral"
                 android:visibility="gone"
@@ -36,8 +35,8 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/waterHappy"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:gravity="left|bottom"
                 app:backgroundTint="@color/filterColor"
                 android:layout_marginLeft="10dp"
@@ -47,8 +46,8 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/waterSad"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:gravity="left|bottom"
                 app:backgroundTint="@color/filterColor"
                 android:layout_marginLeft="10dp"
@@ -60,19 +59,19 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/cold"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/cold"
             android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/waterFilters"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
             android:layout_marginLeft="20dp"
@@ -82,11 +81,11 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/paid"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/paid"
             android:visibility="gone" />
@@ -94,11 +93,11 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/clean"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/clean"
             android:visibility="gone" />
@@ -111,11 +110,11 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/ratingToilet"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:gravity="left|bottom"
                 app:backgroundTint="@color/filterColor"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginBottom="10dp"
                 android:src="@drawable/neutral"
                 android:visibility="gone"
@@ -123,8 +122,8 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/toiletHappy"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:gravity="left|bottom"
                 app:backgroundTint="@color/filterColor"
                 android:layout_marginLeft="10dp"
@@ -134,8 +133,8 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/toiletSad"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:gravity="left|bottom"
                 app:backgroundTint="@color/filterColor"
                 android:layout_marginLeft="10dp"
@@ -153,11 +152,11 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/unisex"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="25dp"
             android:layout_marginBottom="10dp"
             android:src="@drawable/unisex"
             android:visibility="gone"
@@ -165,8 +164,8 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/man"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
             android:layout_marginLeft="10dp"
@@ -176,8 +175,8 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/woman"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
             android:layout_marginLeft="10dp"
@@ -187,12 +186,10 @@
 
         </LinearLayout>
 
-
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/toiletFilters"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:gravity="left|bottom"
             app:backgroundTint="@color/filterColor"
             android:layout_marginLeft="20dp"

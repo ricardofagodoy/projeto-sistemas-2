@@ -1,5 +1,6 @@
 package com.findmytoilet.callback;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import com.findmytoilet.R;
@@ -9,6 +10,7 @@ import com.findmytoilet.dialog.LocationTypeDialog;
 import com.findmytoilet.dialog.ToiletEditDialog;
 import com.findmytoilet.dialog.WaterEditDialog;
 import com.findmytoilet.enums.MarkerTags;
+import com.findmytoilet.fragment.ActionButtonFragment;
 import com.findmytoilet.util.BitmapUtils;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,7 +20,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClickListener,
-        GoogleMap.OnInfoWindowClickListener {
+        GoogleMap.OnInfoWindowClickListener, GoogleMap.OnMapClickListener {
 
     private MapController mapController;
     private Context context;
@@ -34,6 +36,7 @@ public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClick
 
         // Map listeners registered
         googleMap.setOnMapLongClickListener(this);
+        googleMap.setOnMapClickListener(this);
         googleMap.setOnInfoWindowClickListener(this);
 
         // Adapter to customized InfoWindow
@@ -67,6 +70,15 @@ public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClick
     @Override
     public void onMapLongClick (LatLng point) {
         mapController.drawPin(point);
+        this.onMapClick(point);
+    }
+
+    @Override
+    public void onMapClick (LatLng point) {
+        ActionButtonFragment actionButtons = (ActionButtonFragment)((Activity)context).
+                getFragmentManager().findFragmentById(R.id.actions);
+
+        actionButtons.changeActionState(false);
     }
 
     @Override

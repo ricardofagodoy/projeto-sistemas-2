@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="filterColor">#ccf5ff</color>
     <color name="filterColorSelected">#80dfff</color>
+    <color name="backgroundDialog">#cad4d7</color>
 </resources>

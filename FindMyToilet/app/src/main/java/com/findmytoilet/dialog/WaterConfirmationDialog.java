@@ -2,7 +2,10 @@ package com.findmytoilet.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
 
@@ -12,10 +15,13 @@ public class WaterConfirmationDialog extends Dialog {
 
     private Context context;
 
+    private boolean coldActive;
+
     public WaterConfirmationDialog(final Context context)
     {
         super(context);
         this.context = context;
+        coldActive = false;
     }
 
     @Override
@@ -26,8 +32,9 @@ public class WaterConfirmationDialog extends Dialog {
 
         LocationTypeDialog.dialogs.add(this);
 
-        View cold = findViewById(R.id.cold);
-        View hot = findViewById(R.id.hot);
+        final FloatingActionButton cold = (FloatingActionButton) findViewById(R.id.cold);
+        final FloatingActionButton hot = (FloatingActionButton) findViewById(R.id.hot);
+
         View confirm = findViewById(R.id.confirm);
 
         cold.setOnClickListener(new View.OnClickListener()
@@ -35,7 +42,9 @@ public class WaterConfirmationDialog extends Dialog {
             @Override
             public void onClick(View v)
             {
-
+                coldActive = true;
+                cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+                hot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
             }
         });
 
@@ -44,7 +53,10 @@ public class WaterConfirmationDialog extends Dialog {
             @Override
             public void onClick(View v)
             {
+                coldActive = false;
 
+                cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
+                hot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
             }
         });
 
@@ -60,6 +72,7 @@ public class WaterConfirmationDialog extends Dialog {
             }
         });
 
+        hot.callOnClick();
     }
 
 
