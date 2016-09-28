@@ -3,7 +3,12 @@
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="filterColor">#ccf5ff</color>
-    <color name="filterColorSelected">#80dfff</color>
+
+    <!-- Buttons colors -->
+    <color name="filterColor">#F5F5F5</color>
+    <color name="actionButtonColor">#F5F5F5</color>
+
+    <color name="filterColorSelected">#DCF5F5</color>
     <color name="backgroundDialog">#cad4d7</color>
+
 </resources>

@@ -20,13 +20,7 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
         this.context = context;
     }
 
-    @Override
-    public View getInfoWindow(Marker arg0) {
-        return null;
-    }
-
-    @Override
-    public View getInfoContents(Marker marker) {
+    private View loadView(Marker marker) {
 
         Object tag = marker.getTag();
         int viewId = 0;
@@ -37,25 +31,35 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                 case TOILET:
                     viewId = R.layout.toilet_window;
                     toggleEmergencyButton(true);
-                break;
+                    break;
 
                 case WATER:
                     viewId = R.layout.water_window;
                     toggleEmergencyButton(true);
-                break;
+                    break;
 
                 case PIN:
                     viewId = R.layout.new_location_window;
                     toggleEmergencyButton(false);
-                break;
+                    break;
 
                 default:
                     viewId = R.layout.new_location_window;
                     toggleEmergencyButton(false);
-                break;
+                    break;
             }
 
         return ((Activity)context).getLayoutInflater().inflate(viewId, null);
+    }
+
+    @Override
+    public View getInfoWindow(Marker marker) {
+        return null;
+    }
+
+    @Override
+    public View getInfoContents(Marker marker) {
+        return this.loadView(marker);
     }
 
     private void toggleEmergencyButton(boolean state) {

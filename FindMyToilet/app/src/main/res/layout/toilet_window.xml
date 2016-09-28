@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal|center_vertical">
-
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:padding="@dimen/infoWindowPadding">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Banheiro"
+        android:text="@string/toilet"
+        android:textSize="@dimen/titleFontSize"
         android:id="@+id/textView"
         android:textStyle="bold"
         />
@@ -19,53 +18,49 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Rua Padre Teixeira Melo"
+        android:text="@string/fake_toilet_location"
         android:id="@+id/textView4"
+        android:textSize="@dimen/textFontSize"
         android:layout_marginBottom="10dp"/>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <LinearLayout
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/unisex"
         android:src="@drawable/unisex"
-        android:layout_marginRight="10dp"
-        />
+        android:layout_marginRight="5dp" />
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:id="@+id/happy"
             android:src="@drawable/happy"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="5dp"/>
 
         <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:id="@+id/clean"
             android:src="@drawable/clean"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="5dp"/>
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/paid"
         android:src="@drawable/paid"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginRight="5dp"/>
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:id="@+id/wheel"
         android:src="@drawable/wheel"/>
-
-
 
     </LinearLayout>
 

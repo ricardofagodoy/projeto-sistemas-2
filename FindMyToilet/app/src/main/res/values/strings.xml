@@ -1,7 +1,27 @@
 <resources>
+
     <string name="app_name">FindMyToilet</string>
     <string name="title_activity_main">FindMyToilet</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="send">Enviar</string>
+
+    <!-- New location - Information window -->
+    <string name="new_location_title">Adicionar novo local</string>
+    <string name="fake_street_name">Rua Pedro Henrique Cardoso</string>
+    <string name="fake_place_name">Bairro Guanabara</string>
+
+    <!-- Water - Information window -->
+    <string name="water">Bebedouro</string>
+    <string name="fake_water_location">Rua Parque das Palmeiras</string>
+
+    <!-- Toilet - Information window -->
+    <string name="toilet">Banheiro</string>
+    <string name="fake_toilet_location">Rua Padre Teixeira Melo</string>
+
+    <string name="edit_toilet">Editar Banheiro</string>
+    <string name="edit_water">Editar Bebedouro</string>
+
+    <string name="report_action">Reportar</string>
+    <string name="report_cause">Motivo:</string>
+
 </resources>

@@ -16,34 +16,34 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true">
 
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/userLocation"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:backgroundTint="@color/filterColor"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="@dimen/floatButtonsSize"
+            android:layout_height="@dimen/floatButtonsSize"
+            app:backgroundTint="@color/actionButtonColor"
+            android:layout_margin="@dimen/floatButtonsMargin"
             android:src="@drawable/location"
             android:clickable="true" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/emergency"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:backgroundTint="@color/filterColor"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="@dimen/floatButtonsSize"
+            android:layout_height="@dimen/floatButtonsSize"
+            app:backgroundTint="@color/actionButtonColor"
+            android:layout_marginRight="@dimen/floatButtonsMargin"
+            android:layout_marginBottom="@dimen/floatButtonsMargin"
+            android:layout_marginLeft="@dimen/floatButtonsMargin"
             android:src="@drawable/pee"
             android:clickable="true" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/traceRoute"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            app:backgroundTint="@color/filterColor"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="@dimen/floatButtonsSize"
+            android:layout_height="@dimen/floatButtonsSize"
+            app:backgroundTint="@color/actionButtonColor"
+            android:layout_marginRight="@dimen/floatButtonsMargin"
+            android:layout_marginBottom="@dimen/floatButtonsMargin"
+            android:layout_marginLeft="@dimen/floatButtonsMargin"
             android:src="@drawable/route"
             android:clickable="true"
             android:visibility="gone"/>

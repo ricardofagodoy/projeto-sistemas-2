@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal|center_vertical">
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:padding="@dimen/EditDialogPadding">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -16,10 +14,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Editar Bebedouro"
+        android:text="@string/edit_water"
         android:id="@+id/title"
-        android:textSize="30dp"
+        android:textSize="@dimen/titleFontSize"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"/>
@@ -33,49 +30,40 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"/>
 
-        </LinearLayout>
-
-
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Rua Padre Henrique Melo"
+        android:text="@string/fake_water_location"
         android:id="@+id/address"
-        android:textSize="22dp"
+        android:textSize="@dimen/textFontSize"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Bairro Guanabara"
         android:id="@+id/address2"
-        android:textSize="22dp"
+        android:textSize="@dimen/textFontSize"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"/>
 
-
-
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/water_edit_filter_size"
+            android:layout_height="@dimen/water_edit_filter_size"
             android:id="@+id/cold"
             android:src="@drawable/cold"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/items_margin_between"
             />
 
         <ImageButton
@@ -87,41 +75,33 @@
             android:background="@android:color/transparent" />
     </TableRow>
 
-
-
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/water_edit_rating_size"
+            android:layout_height="@dimen/water_edit_rating_size"
             android:id="@+id/sad"
             android:src="@drawable/sad"
-            android:layout_margin="15dp"/>
+            android:layout_margin="@dimen/items_margin_between"/>
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/water_edit_rating_size"
+            android:layout_height="@dimen/water_edit_rating_size"
             android:id="@+id/neutral"
             android:src="@drawable/neutral"
-            android:layout_margin="15dp"/>
+            android:layout_margin="@dimen/items_margin_between"/>
 
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/water_edit_rating_size"
+            android:layout_height="@dimen/water_edit_rating_size"
             android:id="@+id/happy"
             android:src="@drawable/happy"
-            android:layout_margin="15dp"/>
-
-
-
-
+            android:layout_margin="@dimen/items_margin_between"/>
 
     </TableRow>
-
 
 </TableLayout>
 

@@ -1,78 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal|center_vertical">
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:padding="@dimen/EditDialogPadding">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Editar Banheiro"
-        android:id="@+id/title"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_toilet"
+            android:id="@+id/title"
+            android:textSize="@dimen/titleFontSize"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/report"
-        android:src="@drawable/report"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="70dp"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/report"
+            android:src="@drawable/report"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="70dp"/>
 
-        </LinearLayout>
-
-
+       </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Rua Padre Henrique Melo"
+        android:text="@string/fake_toilet_location"
         android:id="@+id/address"
-        android:textSize="22dp"
+        android:textSize="@dimen/textFontSize"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Bairro Guanabara"
+        android:text="@string/fake_place_name"
         android:id="@+id/address2"
-        android:textSize="22dp"
+        android:textSize="@dimen/textFontSize"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"/>
 
-
-
-
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/toilet_edit_filter_size"
+            android:layout_height="@dimen/toilet_edit_filter_size"
             android:id="@+id/unisex"
             android:src="@drawable/unisex"
-            android:layout_margin="15dp"
+            android:layout_margin="@dimen/items_margin_between"
             />
 
         <ImageButton
@@ -83,9 +71,6 @@
             android:layout_gravity="center_vertical|left"
             android:background="@android:color/transparent" />
 
-
-
-
     </LinearLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -94,11 +79,11 @@
         android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/toilet_edit_filter_size"
+        android:layout_height="@dimen/toilet_edit_filter_size"
         android:id="@+id/clean"
         android:src="@drawable/clean"
-        android:layout_margin="15dp"/>
+        android:layout_margin="@dimen/items_margin_between"/>
 
         <ImageButton
         android:layout_width="wrap_content"
@@ -117,11 +102,11 @@
         android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/toilet_edit_filter_size"
+        android:layout_height="@dimen/toilet_edit_filter_size"
         android:id="@+id/paid"
         android:src="@drawable/paid"
-        android:layout_margin="15dp"/>
+        android:layout_margin="@dimen/items_margin_between"/>
 
         <ImageButton
         android:layout_width="wrap_content"
@@ -139,11 +124,11 @@
         android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="45dp"
-        android:layout_height="45dp"
+        android:layout_width="@dimen/toilet_edit_filter_size"
+        android:layout_height="@dimen/toilet_edit_filter_size"
         android:id="@+id/wheel"
         android:src="@drawable/wheel"
-        android:layout_margin="15dp"/>
+        android:layout_margin="@dimen/items_margin_between"/>
 
         <ImageButton
         android:layout_width="wrap_content"
@@ -153,9 +138,7 @@
         android:layout_gravity="center_vertical|left"
         android:background="@android:color/transparent" />
 
-
     </LinearLayout>
-
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -164,26 +147,26 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/toilet_edit_rating_size"
+            android:layout_height="@dimen/toilet_edit_rating_size"
             android:id="@+id/sad"
             android:src="@drawable/sad"
-            android:layout_margin="15dp"/>
+            android:layout_margin="@dimen/items_margin_between"/>
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/toilet_edit_rating_size"
+            android:layout_height="@dimen/toilet_edit_rating_size"
             android:id="@+id/neutral"
             android:src="@drawable/neutral"
-            android:layout_margin="15dp"/>
+            android:layout_margin="@dimen/items_margin_between"/>
 
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/toilet_edit_rating_size"
+            android:layout_height="@dimen/toilet_edit_rating_size"
             android:id="@+id/happy"
             android:src="@drawable/happy"
-            android:layout_margin="15dp"/>
+            android:layout_margin="@dimen/items_margin_between"/>
 
     </LinearLayout>
 

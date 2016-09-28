@@ -6,57 +6,54 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal|center_vertical">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <TextView
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Adicionar novo local"
-        android:id="@+id/textView"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp" />
+        android:padding="@dimen/infoWindowPadding">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Rua Pedro Henrique Cardoso"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true"
-        android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_location_title"
+            android:id="@+id/textView"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:textSize="@dimen/titleFontSize" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/newButton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:gravity="left|bottom"
-        app:backgroundTint="@color/filterColor"
-        android:src="@drawable/plus"
-        android:layout_gravity="center_vertical"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:scaleType="centerCrop" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fake_street_name"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true"
+            android:textSize="@dimen/textFontSize" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Bairro Guanabara"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"
-        android:textSize="16sp" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/newButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:gravity="left|bottom"
+            app:backgroundTint="@color/filterColorSelected"
+            android:src="@drawable/plus"
+            android:layout_gravity="center_vertical"
+            android:layout_toEndOf="@+id/textView2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:scaleType="centerCrop" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fake_place_name"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentStart="true"
+            android:textSize="@dimen/textFontSize" />
 
+    </RelativeLayout>
 
 </LinearLayout>
