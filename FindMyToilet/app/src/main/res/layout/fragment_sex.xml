@@ -33,7 +33,7 @@
         android:layout_gravity="left|center_vertical" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/man"
+        android:id="@+id/male"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:gravity="left|bottom"
@@ -44,7 +44,7 @@
         android:layout_gravity="center_vertical" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/woman"
+        android:id="@+id/female"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:gravity="left|bottom"

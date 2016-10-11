@@ -120,7 +120,7 @@
             android:visibility="gone" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/clean"
+            android:id="@+id/baby"
             android:layout_width="@dimen/floatButtonsChildSize"
             android:layout_height="@dimen/floatButtonsChildSize"
             android:gravity="left|bottom"
@@ -128,7 +128,7 @@
             android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
             android:layout_marginBottom="@dimen/floatButtonsChildMargin"
             android:layout_marginTop="@dimen/floatButtonsChildMargin"
-            android:src="@drawable/clean"
+            android:src="@drawable/baby"
             android:visibility="gone" />
 
         <LinearLayout

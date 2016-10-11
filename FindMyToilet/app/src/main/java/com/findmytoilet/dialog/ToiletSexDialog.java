@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 
 import com.findmytoilet.R;
+import com.findmytoilet.enums.Sex;
 
 public class ToiletSexDialog extends Dialog {
 
@@ -27,33 +28,33 @@ public class ToiletSexDialog extends Dialog {
         LocationTypeDialog.dialogs.add(this);
 
         View unisex = findViewById(R.id.unisex);
-        View man = findViewById(R.id.man);
-        View woman = findViewById(R.id.woman);
+        View male = findViewById(R.id.male);
+        View female = findViewById(R.id.female);
 
         unisex.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                new ToiletConfirmationDialog(context).show();
+                new ToiletConfirmationDialog(context, Sex.UNISEX).show();
             }
         });
 
-        man.setOnClickListener(new View.OnClickListener()
+        male.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                new ToiletConfirmationDialog(context).show();
+                new ToiletConfirmationDialog(context, Sex.MALE).show();
             }
         });
 
-        woman.setOnClickListener(new View.OnClickListener()
+        female.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                new ToiletConfirmationDialog(context).show();
+                new ToiletConfirmationDialog(context, Sex.FEMALE).show();
             }
         });
 

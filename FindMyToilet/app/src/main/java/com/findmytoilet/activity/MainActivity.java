@@ -34,7 +34,7 @@ public class MainActivity extends FragmentActivity {
 
         // Create the filter
         AutocompleteFilter typeFilter = new AutocompleteFilter.Builder()
-                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_ADDRESS)
+                .setTypeFilter(AutocompleteFilter.TYPE_FILTER_NONE)
                 .build();
 
         // Set it to autocomplete box
