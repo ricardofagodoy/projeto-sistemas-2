@@ -45,26 +45,10 @@ public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClick
         // Draw user marker
         mapController.drawInitialPosition();
 
-        // TODO: REMOVE FAKE CODE
-        // CREATE FAKE TOILET
-        Bitmap testToilet = BitmapUtils.bitmapFromResource(context, R.drawable.toilet);
-        testToilet = BitmapUtils.toMapMarkerSize(testToilet);
+        // Draw localities
+        mapController.loadLocalities();
+        mapController.drawLocalities();
 
-        Marker marker = googleMap.addMarker(new MarkerOptions().
-                position(new LatLng(-22.832587, -47.051994)).
-                icon(BitmapDescriptorFactory.fromBitmap(testToilet)));
-
-        marker.setTag(MarkerTags.TOILET);
-
-        // CREATE FAKE WATER FOUNTAIN
-        Bitmap testWater = BitmapUtils.bitmapFromResource(context, R.drawable.water);
-        testWater = BitmapUtils.toMapMarkerSize(testWater);
-
-        marker = googleMap.addMarker(new MarkerOptions().
-                position(new LatLng(-22.832587, -47.052999)).
-                icon(BitmapDescriptorFactory.fromBitmap(testWater)));
-
-        marker.setTag(MarkerTags.WATER);
     }
 
     @Override

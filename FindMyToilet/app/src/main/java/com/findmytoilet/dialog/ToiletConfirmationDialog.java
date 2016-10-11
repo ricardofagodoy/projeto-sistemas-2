@@ -10,20 +10,25 @@ import android.view.View;
 import android.view.Window;
 
 import com.findmytoilet.R;
+import com.findmytoilet.callback.MapCallback;
+import com.findmytoilet.controller.MapController;
+import com.findmytoilet.enums.Sex;
+import com.findmytoilet.model.Toilet;
 
 public class ToiletConfirmationDialog extends Dialog {
 
     private Context context;
-
-    private boolean cleanActive;
+    private Sex sex;
+    private boolean babyActive;
     private boolean paidActive;
     private boolean wheelActive;
 
-    public ToiletConfirmationDialog(final Context context)
+    public ToiletConfirmationDialog(final Context context, Sex sex)
     {
         super(context);
         this.context = context;
-        cleanActive = false;
+        this.sex = sex;
+        babyActive = false;
         paidActive = false;
         wheelActive = false;
     }
@@ -36,7 +41,7 @@ public class ToiletConfirmationDialog extends Dialog {
 
         LocationTypeDialog.dialogs.add(this);
 
-        final FloatingActionButton clean = (FloatingActionButton) findViewById(R.id.clean);
+        final FloatingActionButton clean = (FloatingActionButton) findViewById(R.id.baby);
         final FloatingActionButton paid = (FloatingActionButton) findViewById(R.id.paid);
         final FloatingActionButton wheel = (FloatingActionButton) findViewById(R.id.wheel);
 
@@ -47,9 +52,9 @@ public class ToiletConfirmationDialog extends Dialog {
             @Override
             public void onClick(View v)
             {
-                int color = cleanActive ? R.color.filterColor : R.color.filterColorSelected;
+                int color = babyActive ? R.color.filterColor : R.color.filterColorSelected;
 
-                cleanActive = !cleanActive;
+                babyActive = !babyActive;
 
                 clean.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
@@ -86,10 +91,17 @@ public class ToiletConfirmationDialog extends Dialog {
             @Override
             public void onClick(View v)
             {
+                MapController mapController = MapController.getInstance();
+
+                mapController.addLocalities(
+                        new Toilet(mapController.getPinPosition(), sex, paidActive, babyActive, wheelActive));
+
                 for (Dialog d : LocationTypeDialog.dialogs)
                     d.dismiss();
 
                 LocationTypeDialog.dialogs.clear();
+                mapController.clearPin();
+
             }
         });
 

@@ -25,7 +25,7 @@ public class FilterFragment extends Fragment {
     private boolean toiletRatingActive;
     private boolean waterRatingActive;
     private boolean coldActive;
-    private boolean cleanActive;
+    private boolean babyActive;
     private boolean paidActive;
     private Context context;
 
@@ -36,7 +36,7 @@ public class FilterFragment extends Fragment {
         this.toiletRatingActive = false;
         this.waterRatingActive = false;
         this.coldActive = false;
-        this.cleanActive = false;
+        this.babyActive = false;
         this.paidActive = false;}
 
     public static FilterFragment newInstance() {
@@ -64,7 +64,7 @@ public class FilterFragment extends Fragment {
         final View toiletSad = view.findViewById(R.id.toiletSad);
 
         final FloatingActionButton paid = (FloatingActionButton) view.findViewById(R.id.paid);
-        final FloatingActionButton clean = (FloatingActionButton) view.findViewById(R.id.clean);
+        final FloatingActionButton clean = (FloatingActionButton) view.findViewById(R.id.baby);
 
         final View waterFilters = view.findViewById(R.id.waterFilters);
         final FloatingActionButton cold = (FloatingActionButton) view.findViewById(R.id.cold);
@@ -168,9 +168,9 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View v)
             {
-                int color = cleanActive ? R.color.filterColor : R.color.filterColorSelected;
+                int color = babyActive ? R.color.filterColor : R.color.filterColorSelected;
 
-                cleanActive = !cleanActive;
+                babyActive = !babyActive;
 
                 clean.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context,color)));
 
