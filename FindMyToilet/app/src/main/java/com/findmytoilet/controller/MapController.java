@@ -22,6 +22,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.Criteria;
 
 public class MapController {
 
@@ -34,6 +38,8 @@ public class MapController {
     private Marker pin;
     private Bitmap toiletImage;
     private Bitmap waterImage;
+    protected LocationManager locationManager;
+    private Location currentLocation;
 
     public static MapController getInstance() {
         return MapController.instance;
@@ -51,6 +57,11 @@ public class MapController {
         this.map = map;
         this.context = ctx;
 
+        locationManager = (LocationManager) ctx.getSystemService(ctx.LOCATION_SERVICE);
+
+        try{
+            currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        }catch(SecurityException e){}
 
         //Create Toilet and Water images
         toiletImage = BitmapUtils.bitmapFromResource(context, R.drawable.toilet);
@@ -81,8 +92,8 @@ public class MapController {
     public void drawInitialPosition() {
 
         // Retrieve from GPS
-        LatLng current = new LatLng(-22.832587, -47.051994);
-        map.moveCamera(CameraUpdateFactory.newLatLng(current));
+//        LatLng current = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+//        map.moveCamera(CameraUpdateFactory.newLatLng(current));
 
         try {
             map.setMyLocationEnabled(true);
