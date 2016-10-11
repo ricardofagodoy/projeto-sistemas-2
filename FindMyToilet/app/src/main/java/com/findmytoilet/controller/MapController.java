@@ -59,9 +59,10 @@ public class MapController {
 
         locationManager = (LocationManager) ctx.getSystemService(ctx.LOCATION_SERVICE);
 
-        try{
-            currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        }catch(SecurityException e){}
+//        try{
+//            currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//        }catch(SecurityException e){}
+        currentLocation = getLastKnownLocation();
 
         //Create Toilet and Water images
         toiletImage = BitmapUtils.bitmapFromResource(context, R.drawable.toilet);
@@ -89,11 +90,37 @@ public class MapController {
         settings.setMyLocationButtonEnabled(false);
     }
 
+    private Location getLastKnownLocation() {
+        List<String> providers = locationManager.getProviders(true);
+        Location bestLocation = null;
+        for (String provider : providers) {
+            Location l;
+            try {
+                l = locationManager.getLastKnownLocation(provider);
+
+                if (l == null) {
+                    continue;
+                }
+
+                if (bestLocation == null
+                        || l.getAccuracy() < bestLocation.getAccuracy()) {
+                    bestLocation = l;
+                }
+            }catch (SecurityException e){}
+
+        }
+        if (bestLocation == null) {
+            return null;
+        }
+        return bestLocation;
+    }
+
+
     public void drawInitialPosition() {
 
         // Retrieve from GPS
-//        LatLng current = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-//        map.moveCamera(CameraUpdateFactory.newLatLng(current));
+        LatLng current = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+        map.moveCamera(CameraUpdateFactory.newLatLng(current));
 
         try {
             map.setMyLocationEnabled(true);

@@ -28,7 +28,6 @@ public class ActionButtonFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_action_button, container, false);
-
         View userLocation = view.findViewById(R.id.userLocation);
 
         userLocation.setOnClickListener(new View.OnClickListener() {
