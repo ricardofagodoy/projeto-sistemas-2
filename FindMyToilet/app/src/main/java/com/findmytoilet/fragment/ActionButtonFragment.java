@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.findmytoilet.R;
 import com.findmytoilet.controller.MapController;
 import com.google.android.gms.maps.model.LatLng;
@@ -33,10 +34,7 @@ public class ActionButtonFragment extends Fragment {
         userLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // TODO: GET POSITION FROM GPS
-                LatLng current = new LatLng(-22.832587, -47.052924);
-                MapController.getInstance().animateCameraPosition(current);
+                MapController.getInstance().centerOnUser();
             }
         });
 
@@ -48,7 +46,8 @@ public class ActionButtonFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-        } else {}
+        } else {
+        }
     }
 
     public void changeActionState(boolean state) {

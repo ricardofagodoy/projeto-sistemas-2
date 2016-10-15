@@ -3,6 +3,7 @@ package com.findmytoilet.controller;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.location.Location;
+import android.location.LocationManager;
 import android.util.Log;
 
 import com.findmytoilet.R;
@@ -22,24 +23,21 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.location.Criteria;
 
 public class MapController {
 
+    private static final Float INITIAL_ZOOM = 16.0f;
     private static MapController instance = null;
 
     private GoogleMap map;
     private Context context;
     private List<Locality> localityList;
 
+    private UserController user;
+
     private Marker pin;
     private Bitmap toiletImage;
     private Bitmap waterImage;
-    protected LocationManager locationManager;
-    private Location currentLocation;
 
     public static MapController getInstance() {
         return MapController.instance;
@@ -54,15 +52,12 @@ public class MapController {
     }
 
     protected MapController(Context ctx, GoogleMap map) {
+
         this.map = map;
         this.context = ctx;
 
-        locationManager = (LocationManager) ctx.getSystemService(ctx.LOCATION_SERVICE);
-
-//        try{
-//            currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//        }catch(SecurityException e){}
-        currentLocation = getLastKnownLocation();
+        // Takes care of user ID, location and preferences
+        user = new UserController(ctx, this);
 
         //Create Toilet and Water images
         toiletImage = BitmapUtils.bitmapFromResource(context, R.drawable.toilet);
@@ -88,69 +83,34 @@ public class MapController {
         settings.setCompassEnabled(false);
         settings.setMapToolbarEnabled(false);
         settings.setMyLocationButtonEnabled(false);
-    }
 
-    private Location getLastKnownLocation() {
-        List<String> providers = locationManager.getProviders(true);
-        Location bestLocation = null;
-        for (String provider : providers) {
-            Location l;
-            try {
-                l = locationManager.getLastKnownLocation(provider);
-
-                if (l == null) {
-                    continue;
-                }
-
-                if (bestLocation == null
-                        || l.getAccuracy() < bestLocation.getAccuracy()) {
-                    bestLocation = l;
-                }
-            }catch (SecurityException e){}
-
-        }
-        if (bestLocation == null) {
-            return null;
-        }
-        return bestLocation;
-    }
-
-
-    public void drawInitialPosition() {
-
-        // Retrieve from GPS
-        LatLng current = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
-        map.moveCamera(CameraUpdateFactory.newLatLng(current));
-
+        // Blue dot
         try {
             map.setMyLocationEnabled(true);
         } catch (SecurityException e) {
             Log.e("ERROR", Log.getStackTraceString(e));
         }
-
-        map.animateCamera(CameraUpdateFactory.zoomTo(16.0f));
     }
 
-    public void addLocalities(Locality locality){
+    public void addLocalities(Locality locality) {
         localityList.add(locality);
 
         if (locality instanceof Toilet) {
-             map.addMarker(new MarkerOptions().
-                  position(locality.getCurrentLocation()).
-                  icon(BitmapDescriptorFactory.fromBitmap(toiletImage))).setTag(MarkerTags.TOILET);
+            map.addMarker(new MarkerOptions().
+                    position(locality.getCurrentLocation()).
+                    icon(BitmapDescriptorFactory.fromBitmap(toiletImage))).setTag(MarkerTags.TOILET);
         }
 
         if (locality instanceof Water) {
             map.addMarker(new MarkerOptions().
-                  position(locality.getCurrentLocation()).
-                  icon(BitmapDescriptorFactory.fromBitmap(waterImage))).setTag(MarkerTags.WATER);
+                    position(locality.getCurrentLocation()).
+                    icon(BitmapDescriptorFactory.fromBitmap(waterImage))).setTag(MarkerTags.WATER);
         }
     }
 
-    public void loadLocalities(){
+    public void loadLocalities() {
 
         //TODO: LOAD FROM DATABASE
-
         localityList = new ArrayList<>();
 
         localityList.add(new Toilet(new LatLng(-22.832587, -47.051994), Sex.MALE, true, false, false));
@@ -161,7 +121,7 @@ public class MapController {
         localityList.add(new Water(new LatLng(-22.835589, -47.05095), true));
     }
 
-    public void drawLocalities(){
+    public void drawLocalities() {
 
         for (Locality locality : localityList) {
 
@@ -177,7 +137,6 @@ public class MapController {
                         icon(BitmapDescriptorFactory.fromBitmap(waterImage))).setTag(MarkerTags.WATER);
             }
         }
-
     }
 
     public void drawPin(LatLng point) {
@@ -186,16 +145,20 @@ public class MapController {
         this.animateCameraPosition(point);
     }
 
-    public LatLng getPinPosition(){
+    public LatLng getPinPosition() {
         return this.pin.getPosition();
     }
 
-    public void clearPin(){
-        this.pin.setPosition(new LatLng(0,0));
+    public void clearPin() {
+        this.pin.setPosition(new LatLng(0, 0));
         this.pin.hideInfoWindow();
     }
 
-    public void animateCameraPosition(LatLng latlng) {
-        map.animateCamera(CameraUpdateFactory.newLatLng(latlng));
+    public void centerOnUser() {
+        this.user.centerOnUser();
+    }
+
+    public void animateCameraPosition(LatLng position) {
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(position, INITIAL_ZOOM));
     }
 }

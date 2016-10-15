@@ -42,13 +42,9 @@ public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClick
         // Adapter to customized InfoWindow
         googleMap.setInfoWindowAdapter(new InformationWindowAdapter(context));
 
-        // Draw user marker
-        mapController.drawInitialPosition();
-
         // Draw localities
         mapController.loadLocalities();
         mapController.drawLocalities();
-
     }
 
     @Override
