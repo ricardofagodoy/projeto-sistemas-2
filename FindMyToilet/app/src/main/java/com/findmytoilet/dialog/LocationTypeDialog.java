@@ -13,16 +13,15 @@ import java.util.List;
 
 public class LocationTypeDialog extends Dialog {
 
+    private static final String TAG = LocationTypeDialog.class.getName();
+
     private Context context;
     public static List<Dialog> dialogs = new ArrayList<Dialog>();
 
-    public LocationTypeDialog(final Context context)
-    {
+    public LocationTypeDialog(final Context context) {
         super(context);
         this.context = context;
     }
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,20 +34,16 @@ public class LocationTypeDialog extends Dialog {
         View toiletType = findViewById(R.id.toiletType);
         View waterType = findViewById(R.id.waterType);
 
-        toiletType.setOnClickListener(new View.OnClickListener()
-        {
+        toiletType.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 new ToiletSexDialog(context).show();
             }
         });
 
-        waterType.setOnClickListener(new View.OnClickListener()
-        {
+        waterType.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 new WaterConfirmationDialog(context).show();
             }
         });

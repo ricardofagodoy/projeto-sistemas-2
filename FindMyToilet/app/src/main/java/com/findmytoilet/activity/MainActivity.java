@@ -11,6 +11,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 
 public class MainActivity extends FragmentActivity {
 
+    private static final String TAG = MainActivity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

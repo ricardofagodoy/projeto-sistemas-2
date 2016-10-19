@@ -3,13 +3,16 @@ package com.findmytoilet.controller;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+
 import com.findmytoilet.R;
 import com.findmytoilet.enums.MarkerTags;
+import com.findmytoilet.fragment.ActionButtonFragment;
+import com.findmytoilet.fragment.FilterFragment;
 import com.findmytoilet.model.Filter;
 import com.findmytoilet.model.Locality;
-import com.findmytoilet.model.LocalityMarker;
 import com.findmytoilet.model.Toilet;
 import com.findmytoilet.model.Water;
+import com.findmytoilet.network.LocalityHttp;
 import com.findmytoilet.util.BitmapUtils;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -21,7 +24,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.List;
 
-public class MapController {
+public class MapController implements LocalityHttp.LocalityCallback,
+        ActionButtonFragment.ActionButtonCallback,
+        FilterFragment.FilterCallback {
+
+    private static final String TAG = MapController.class.getName();
 
     private static MapController instance = null;
 
@@ -29,10 +36,10 @@ public class MapController {
     private Context context;
 
     private UserController user;
-    private LocalityController localities;
 
     private Float initialZoom;
     private Marker pin;
+
     private Bitmap toiletImage;
     private Bitmap waterImage;
 
@@ -41,7 +48,7 @@ public class MapController {
         return MapController.instance;
     }
 
-    public static MapController getInstance(Context ctx, GoogleMap map) {
+    public static MapController initialize(Context ctx, GoogleMap map) {
 
         if (instance == null)
             MapController.instance = new MapController(ctx, map);
@@ -58,10 +65,6 @@ public class MapController {
 
         // Takes care of user ID, location and preferences
         user = new UserController(ctx, this);
-
-        // Takes care of all localities
-        localities = new LocalityController();
-
 
         //Create Toilet and Water images
         toiletImage = BitmapUtils.bitmapFromResource(context, R.drawable.toilet);
@@ -103,7 +106,7 @@ public class MapController {
         this.animateCameraPosition(point);
     }
 
-    protected void drawLocality(Locality locality) {
+    public void drawLocality(Locality locality) {
 
         // TODO: APPLY FILTERS
         if (locality instanceof Toilet) {
@@ -122,26 +125,35 @@ public class MapController {
         }
     }
 
-    public void drawLocalities() {
 
-        List<Locality> all = localities.getAll();
-
-        for (Locality loc : all)
-            if (loc != null)
-                this.drawLocality(loc);
-
+    /* Callback implementations */
+    @Override
+    public void onCenterUserClick() {
+        this.user.centerOnUser();
     }
 
-    /* Related methods */
-    public void addLocality(Locality locality) {
+    @Override
+    public void onFilterChanged(Filter filter) {
+        Log.i("Filters", filter.toString());
+    }
 
+    @Override
+    public void OnLocalitiesLoaded(List<Locality> localities) {
+        for (Locality loc : localities)
+            if (loc != null)
+                this.drawLocality(loc);
+    }
+
+    @Override
+    public void OnLocalityCreated(Locality locality) {
         if (locality == null)
             return;
 
-        this.localities.addLocality(locality);
         this.drawLocality(locality);
     }
 
+
+    /* Helpers */
     public LatLng getPinPosition() {
         return this.pin.getPosition();
     }
@@ -151,13 +163,6 @@ public class MapController {
         this.pin.hideInfoWindow();
     }
 
-    public void centerOnUser() {
-        this.user.centerOnUser();
-    }
-
-    public void applyFilter(Filter filter) {
-        Log.i("Filters", filter.toString());
-    }
 
     /* Camera methods */
     public void animateCameraPosition(LatLng position) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -15,6 +16,8 @@ public class UserController implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
+
+    private static final String TAG = UserController.class.getName();
 
     private GoogleApiClient mGoogleApiClient;
     private MapController map;
@@ -89,13 +92,14 @@ public class UserController implements
 
         if (this.map != null && location != null) {
 
+            // First time, when open app, no animation
             if (this.firstPosition) {
+
                 this.map.moveCameraPositionZoom(new LatLng
                         (location.getLatitude(), location.getLongitude()), null);
 
                 this.firstPosition = false;
-            }
-            else
+            } else
                 this.map.animateCameraPositionZoom(new LatLng
                         (location.getLatitude(), location.getLongitude()), null);
 

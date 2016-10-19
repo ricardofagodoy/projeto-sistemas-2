@@ -2,14 +2,15 @@ package com.findmytoilet.callback;
 
 import android.util.Log;
 
+import com.findmytoilet.activity.MainActivity;
 import com.findmytoilet.controller.MapController;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.model.LatLng;
 
 public class AutocompletePlaceCallback implements PlaceSelectionListener {
+
+    private static final String TAG = AutocompletePlaceCallback.class.getName();
 
     @Override
     public void onPlaceSelected(Place place) {

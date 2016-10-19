@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 
 public class BitmapUtils {
 
+    private static final String TAG = BitmapUtils.class.getName();
+
     public static Bitmap toMapMarkerSize(Bitmap bitmap) {
 
         if (bitmap != null)

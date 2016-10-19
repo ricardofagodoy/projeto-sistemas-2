@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.Window;
 
 import com.findmytoilet.R;
-import com.findmytoilet.callback.MapCallback;
 import com.findmytoilet.controller.MapController;
 import com.findmytoilet.enums.Sex;
 import com.findmytoilet.model.Toilet;
+import com.findmytoilet.network.LocalityHttp;
 
 public class ToiletConfirmationDialog extends Dialog {
+
+    private static final String TAG = ToiletConfirmationDialog.class.getName();
 
     private Context context;
     private Sex sex;
@@ -23,8 +25,7 @@ public class ToiletConfirmationDialog extends Dialog {
     private boolean paidActive;
     private boolean wheelActive;
 
-    public ToiletConfirmationDialog(final Context context, Sex sex)
-    {
+    public ToiletConfirmationDialog(final Context context, Sex sex) {
         super(context);
         this.context = context;
         this.sex = sex;
@@ -47,11 +48,9 @@ public class ToiletConfirmationDialog extends Dialog {
 
         final View confirm = findViewById(R.id.confirm);
 
-        clean.setOnClickListener(new View.OnClickListener()
-        {
+        clean.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int color = babyActive ? R.color.filterColor : R.color.filterColorSelected;
 
                 babyActive = !babyActive;
@@ -60,11 +59,9 @@ public class ToiletConfirmationDialog extends Dialog {
             }
         });
 
-        paid.setOnClickListener(new View.OnClickListener()
-        {
+        paid.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int color = paidActive ? R.color.filterColor : R.color.filterColorSelected;
 
                 paidActive = !paidActive;
@@ -73,11 +70,9 @@ public class ToiletConfirmationDialog extends Dialog {
             }
         });
 
-        wheel.setOnClickListener(new View.OnClickListener()
-        {
+        wheel.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int color = wheelActive ? R.color.filterColor : R.color.filterColorSelected;
 
                 wheelActive = !wheelActive;
@@ -86,14 +81,12 @@ public class ToiletConfirmationDialog extends Dialog {
             }
         });
 
-        confirm.setOnClickListener(new View.OnClickListener()
-        {
+        confirm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 MapController mapController = MapController.getInstance();
 
-                mapController.addLocality(
+                LocalityHttp.getInstance().createLocality(
                         new Toilet(mapController.getPinPosition(), sex, paidActive, babyActive, wheelActive));
 
                 for (Dialog d : LocationTypeDialog.dialogs)
@@ -106,10 +99,6 @@ public class ToiletConfirmationDialog extends Dialog {
         });
 
     }
-
-
-
-
 
 
 }

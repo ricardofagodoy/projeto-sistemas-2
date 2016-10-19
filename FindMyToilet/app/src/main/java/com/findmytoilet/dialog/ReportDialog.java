@@ -9,8 +9,9 @@ import com.findmytoilet.R;
 
 public class ReportDialog extends Dialog {
 
-    public ReportDialog(final Context context)
-    {
+    private static final String TAG = ReportDialog.class.getName();
+
+    public ReportDialog(final Context context) {
         super(context);
     }
 

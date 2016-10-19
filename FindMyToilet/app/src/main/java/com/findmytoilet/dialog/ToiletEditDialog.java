@@ -5,14 +5,16 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+
 import com.findmytoilet.R;
 
 public class ToiletEditDialog extends Dialog {
 
+    private static final String TAG = ToiletEditDialog.class.getName();
+
     private Context context;
 
-    public ToiletEditDialog(final Context context)
-    {
+    public ToiletEditDialog(final Context context) {
         super(context);
         this.context = context;
     }

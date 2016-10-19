@@ -13,12 +13,13 @@ import com.findmytoilet.R;
 
 public class WaterConfirmationDialog extends Dialog {
 
+    private static final String TAG = WaterConfirmationDialog.class.getName();
+
     private Context context;
 
     private boolean coldActive;
 
-    public WaterConfirmationDialog(final Context context)
-    {
+    public WaterConfirmationDialog(final Context context) {
         super(context);
         this.context = context;
         coldActive = false;
@@ -37,22 +38,18 @@ public class WaterConfirmationDialog extends Dialog {
 
         View confirm = findViewById(R.id.confirm);
 
-        cold.setOnClickListener(new View.OnClickListener()
-        {
+        cold.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 coldActive = true;
                 cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
                 hot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
             }
         });
 
-        hot.setOnClickListener(new View.OnClickListener()
-        {
+        hot.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 coldActive = false;
 
                 cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
@@ -60,11 +57,9 @@ public class WaterConfirmationDialog extends Dialog {
             }
         });
 
-        confirm.setOnClickListener(new View.OnClickListener()
-        {
+        confirm.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 for (Dialog d : LocationTypeDialog.dialogs)
                     d.dismiss();
 
@@ -74,6 +69,4 @@ public class WaterConfirmationDialog extends Dialog {
 
         hot.callOnClick();
     }
-
-
 }

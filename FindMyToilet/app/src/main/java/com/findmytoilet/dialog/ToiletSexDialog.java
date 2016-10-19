@@ -11,10 +11,11 @@ import com.findmytoilet.enums.Sex;
 
 public class ToiletSexDialog extends Dialog {
 
+    private static final String TAG = ToiletSexDialog.class.getName();
+
     private Context context;
 
-    public ToiletSexDialog(final Context context)
-    {
+    public ToiletSexDialog(final Context context) {
         super(context);
         this.context = context;
     }
@@ -31,29 +32,23 @@ public class ToiletSexDialog extends Dialog {
         View male = findViewById(R.id.male);
         View female = findViewById(R.id.female);
 
-        unisex.setOnClickListener(new View.OnClickListener()
-        {
+        unisex.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 new ToiletConfirmationDialog(context, Sex.UNISEX).show();
             }
         });
 
-        male.setOnClickListener(new View.OnClickListener()
-        {
+        male.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 new ToiletConfirmationDialog(context, Sex.MALE).show();
             }
         });
 
-        female.setOnClickListener(new View.OnClickListener()
-        {
+        female.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 new ToiletConfirmationDialog(context, Sex.FEMALE).show();
             }
         });

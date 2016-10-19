@@ -10,6 +10,8 @@ import com.findmytoilet.R;
 
 public class WaterEditDialog extends Dialog {
 
+    private static final String TAG = WaterEditDialog.class.getName();
+
     private Context context;
 
     public WaterEditDialog(final Context context) {

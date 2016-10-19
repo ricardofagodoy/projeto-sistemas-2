@@ -10,15 +10,17 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.findmytoilet.R;
-import com.findmytoilet.controller.MapController;
 import com.findmytoilet.enums.Sex;
 import com.findmytoilet.model.Filter;
 
 public class FilterFragment extends Fragment {
 
-    private Context context;
+    private static final String TAG = FilterFragment.class.getName();
 
+    private Context context;
+    private FilterCallback mListener;
     private Filter filter;
 
     private boolean toiletActive;
@@ -37,6 +39,10 @@ public class FilterFragment extends Fragment {
         this.sexActive = false;
         this.toiletRatingActive = false;
         this.waterRatingActive = false;
+    }
+
+    public void addListener(FilterCallback listener) {
+        this.mListener = listener;
     }
 
     @Override
@@ -227,7 +233,8 @@ public class FilterFragment extends Fragment {
     }
 
     private void applyFilter() {
-        MapController.getInstance().applyFilter(filter);
+        if (mListener != null)
+            mListener.onFilterChanged(filter);
     }
 
     @Override
@@ -239,5 +246,9 @@ public class FilterFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    public interface FilterCallback {
+        void onFilterChanged(Filter filter);
     }
 }

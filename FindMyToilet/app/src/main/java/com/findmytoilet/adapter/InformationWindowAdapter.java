@@ -1,18 +1,17 @@
 package com.findmytoilet.adapter;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.view.View;
 import com.findmytoilet.R;
-import com.findmytoilet.activity.MainActivity;
-import com.findmytoilet.dialog.LocationTypeDialog;
 import com.findmytoilet.enums.MarkerTags;
 import com.findmytoilet.fragment.ActionButtonFragment;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 
 public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+    private static final String TAG = InformationWindowAdapter.class.getName();
 
     private Context context;
 
@@ -26,7 +25,7 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
         int viewId = 0;
 
         if (tag != null)
-            switch ((MarkerTags)tag) {
+            switch ((MarkerTags) tag) {
 
                 case TOILET:
                     viewId = R.layout.toilet_window;
@@ -49,7 +48,7 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                     break;
             }
 
-        return ((Activity)context).getLayoutInflater().inflate(viewId, null);
+        return ((Activity) context).getLayoutInflater().inflate(viewId, null);
     }
 
     @Override
@@ -64,7 +63,7 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
     private void toggleEmergencyButton(boolean state) {
 
-        ActionButtonFragment actionButtons = (ActionButtonFragment)((Activity)context).
+        ActionButtonFragment actionButtons = (ActionButtonFragment) ((Activity) context).
                 getFragmentManager().findFragmentById(R.id.actions);
 
         actionButtons.changeActionState(state);
