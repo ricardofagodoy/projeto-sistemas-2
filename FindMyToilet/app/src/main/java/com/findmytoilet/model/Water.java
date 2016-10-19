@@ -1,7 +1,5 @@
 package com.findmytoilet.model;
 
-
-import com.findmytoilet.enums.Sex;
 import com.google.android.gms.maps.model.LatLng;
 
 public class Water extends Locality{

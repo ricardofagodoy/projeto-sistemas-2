@@ -10,6 +10,7 @@ import com.findmytoilet.fragment.ActionButtonFragment;
 import com.findmytoilet.fragment.FilterFragment;
 import com.findmytoilet.model.Filter;
 import com.findmytoilet.model.Locality;
+import com.findmytoilet.model.LocalityMarker;
 import com.findmytoilet.model.Toilet;
 import com.findmytoilet.model.Water;
 import com.findmytoilet.network.LocalityHttp;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapController implements LocalityHttp.LocalityCallback,
@@ -36,9 +38,12 @@ public class MapController implements LocalityHttp.LocalityCallback,
     private Context context;
 
     private UserController user;
+    private Filter filter;
 
     private Float initialZoom;
     private Marker pin;
+
+    private List<LocalityMarker> localityMarkers;
 
     private Bitmap toiletImage;
     private Bitmap waterImage;
@@ -62,6 +67,8 @@ public class MapController implements LocalityHttp.LocalityCallback,
         this.context = ctx;
 
         this.initialZoom = Float.parseFloat(ctx.getString(R.string.initial_zoom));
+
+        this.localityMarkers = new ArrayList<>();
 
         // Takes care of user ID, location and preferences
         user = new UserController(ctx, this);
@@ -106,25 +113,32 @@ public class MapController implements LocalityHttp.LocalityCallback,
         this.animateCameraPosition(point);
     }
 
-    public void drawLocality(Locality locality) {
+    private LocalityMarker addLocality(Locality l) {
 
-        // TODO: APPLY FILTERS
-        if (locality instanceof Toilet) {
+        Marker marker = null;
 
-            map.addMarker(new MarkerOptions().
-                    position(locality.getCurrentLocation()).
-                    icon(BitmapDescriptorFactory.fromBitmap(toiletImage))).
-                    setTag(MarkerTags.TOILET);
+        if (l instanceof Toilet) {
 
-        } else if (locality instanceof Water) {
+            marker = map.addMarker(new MarkerOptions().
+                    position(l.getCurrentLocation()).
+                    icon(BitmapDescriptorFactory.fromBitmap(toiletImage)));
 
-            map.addMarker(new MarkerOptions().
-                    position(locality.getCurrentLocation()).
-                    icon(BitmapDescriptorFactory.fromBitmap(waterImage))).
-                    setTag(MarkerTags.WATER);
+            marker.setTag(MarkerTags.TOILET);
+
+        } else if (l instanceof Water) {
+
+            marker = map.addMarker(new MarkerOptions().
+                    position(l.getCurrentLocation()).
+                    icon(BitmapDescriptorFactory.fromBitmap(waterImage)));
+
+            marker.setTag(MarkerTags.WATER);
         }
-    }
 
+        LocalityMarker lm = new LocalityMarker(marker, l);
+        localityMarkers.add(lm);
+
+        return lm;
+    }
 
     /* Callback implementations */
     @Override
@@ -132,24 +146,47 @@ public class MapController implements LocalityHttp.LocalityCallback,
         this.user.centerOnUser();
     }
 
+    private void applyFilter() {
+
+        if (filter == null)
+            return;
+
+        for (LocalityMarker loc : localityMarkers)
+            if (loc != null && loc.getMarker() != null)
+                loc.getMarker().setVisible(loc.matchesFilter(filter));
+    }
+
     @Override
     public void onFilterChanged(Filter filter) {
         Log.i("Filters", filter.toString());
+        this.filter = filter;
+        this.applyFilter();
     }
 
     @Override
     public void OnLocalitiesLoaded(List<Locality> localities) {
-        for (Locality loc : localities)
-            if (loc != null)
-                this.drawLocality(loc);
+
+        if (localities == null)
+            return;
+
+        if (localityMarkers != null && !localityMarkers.isEmpty())
+            localityMarkers.clear();
+
+        // Load all localities to marker list
+        for (Locality l : localities)
+            addLocality(l);
     }
 
     @Override
     public void OnLocalityCreated(Locality locality) {
+
         if (locality == null)
             return;
 
-        this.drawLocality(locality);
+        LocalityMarker lm = this.addLocality(locality);
+
+        // Apply filter to new locality
+        lm.getMarker().setVisible(lm.matchesFilter(filter));
     }
 
 

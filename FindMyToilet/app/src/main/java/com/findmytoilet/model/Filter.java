@@ -4,23 +4,31 @@ import com.findmytoilet.enums.Sex;
 
 public class Filter {
 
-    private Boolean cold;
     private Sex sex;
+    private Boolean cold;
     private Boolean baby;
-    private Boolean paid;
+    private Boolean wheel;
 
-    public Filter(Boolean cold, Sex sex, Boolean baby, Boolean paid) {
+    public Filter(Boolean cold, Sex sex, Boolean baby, Boolean wheel) {
         this.cold = cold;
         this.sex = sex;
         this.baby = baby;
-        this.paid = paid;
+        this.wheel = wheel;
     }
 
     public Filter() {
         this(false, Sex.UNISEX, false, false);
     }
 
-    public Boolean getCold() {
+    public Boolean isWheel() {
+        return wheel;
+    }
+
+    public void toggleWheel() {
+        this.wheel = !this.wheel;
+    }
+
+    public Boolean isCold() {
         return cold;
     }
 
@@ -36,7 +44,7 @@ public class Filter {
         this.sex = sex;
     }
 
-    public Boolean getBaby() {
+    public Boolean isBaby() {
         return baby;
     }
 
@@ -44,17 +52,9 @@ public class Filter {
         this.baby = !this.baby;
     }
 
-    public Boolean getPaid() {
-        return paid;
-    }
-
-    public void togglePaid() {
-        this.paid = !this.paid;
-    }
-
     @Override
     public String toString() {
-        return "Sex: " + this.getSex().name() + " | " + "Cold: " + this.getCold() +
-                " | " + "Baby: " + this.getBaby() + " | " + "Paid: " + this.getPaid();
+        return "Sex: " + this.getSex().name() + " | " + "Cold: " + this.isCold() +
+                " | " + "Baby: " + this.isBaby() + " | " + "Wheel: " + this.isWheel();
     }
 }

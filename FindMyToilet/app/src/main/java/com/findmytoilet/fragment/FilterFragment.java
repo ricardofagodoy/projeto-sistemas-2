@@ -67,8 +67,8 @@ public class FilterFragment extends Fragment {
         final View toiletHappy = view.findViewById(R.id.toiletHappy);
         final View toiletSad = view.findViewById(R.id.toiletSad);
 
-        final FloatingActionButton paid = (FloatingActionButton) view.findViewById(R.id.paid);
         final FloatingActionButton baby = (FloatingActionButton) view.findViewById(R.id.baby);
+        final FloatingActionButton wheel = (FloatingActionButton) view.findViewById(R.id.wheel);
 
         final View waterFilters = view.findViewById(R.id.waterFilters);
         final FloatingActionButton cold = (FloatingActionButton) view.findViewById(R.id.cold);
@@ -97,8 +97,8 @@ public class FilterFragment extends Fragment {
 
                 sex.setVisibility(state);
                 ratingToilet.setVisibility(state);
-                paid.setVisibility(state);
                 baby.setVisibility(state);
+                wheel.setVisibility(state);
             }
         });
 
@@ -193,7 +193,7 @@ public class FilterFragment extends Fragment {
         baby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int color = filter.getBaby() ? R.color.filterColor : R.color.filterColorSelected;
+                int color = filter.isBaby() ? R.color.filterColor : R.color.filterColorSelected;
 
                 filter.toggleBaby();
                 applyFilter();
@@ -203,23 +203,22 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        paid.setOnClickListener(new View.OnClickListener() {
+        wheel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int color = filter.getPaid() ? R.color.filterColor : R.color.filterColorSelected;
+                int color = filter.isWheel() ? R.color.filterColor : R.color.filterColorSelected;
 
-                filter.togglePaid();
+                filter.toggleWheel();
                 applyFilter();
 
-                paid.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
-
+                wheel.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 
         cold.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int color = filter.getCold() ? R.color.filterColor : R.color.filterColorSelected;
+                int color = filter.isCold() ? R.color.filterColor : R.color.filterColorSelected;
 
                 filter.toggleCold();
                 applyFilter();

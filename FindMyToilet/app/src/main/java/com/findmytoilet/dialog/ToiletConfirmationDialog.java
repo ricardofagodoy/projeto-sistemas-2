@@ -8,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.Window;
-
 import com.findmytoilet.R;
 import com.findmytoilet.controller.MapController;
 import com.findmytoilet.enums.Sex;
@@ -22,7 +21,6 @@ public class ToiletConfirmationDialog extends Dialog {
     private Context context;
     private Sex sex;
     private boolean babyActive;
-    private boolean paidActive;
     private boolean wheelActive;
 
     public ToiletConfirmationDialog(final Context context, Sex sex) {
@@ -30,7 +28,6 @@ public class ToiletConfirmationDialog extends Dialog {
         this.context = context;
         this.sex = sex;
         babyActive = false;
-        paidActive = false;
         wheelActive = false;
     }
 
@@ -43,7 +40,6 @@ public class ToiletConfirmationDialog extends Dialog {
         LocationTypeDialog.dialogs.add(this);
 
         final FloatingActionButton clean = (FloatingActionButton) findViewById(R.id.baby);
-        final FloatingActionButton paid = (FloatingActionButton) findViewById(R.id.paid);
         final FloatingActionButton wheel = (FloatingActionButton) findViewById(R.id.wheel);
 
         final View confirm = findViewById(R.id.confirm);
@@ -56,17 +52,6 @@ public class ToiletConfirmationDialog extends Dialog {
                 babyActive = !babyActive;
 
                 clean.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
-            }
-        });
-
-        paid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int color = paidActive ? R.color.filterColor : R.color.filterColorSelected;
-
-                paidActive = !paidActive;
-
-                paid.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 
@@ -87,7 +72,7 @@ public class ToiletConfirmationDialog extends Dialog {
                 MapController mapController = MapController.getInstance();
 
                 LocalityHttp.getInstance().createLocality(
-                        new Toilet(mapController.getPinPosition(), sex, paidActive, babyActive, wheelActive));
+                        new Toilet(mapController.getPinPosition(), sex, babyActive, wheelActive));
 
                 for (Dialog d : LocationTypeDialog.dialogs)
                     d.dismiss();
@@ -99,6 +84,4 @@ public class ToiletConfirmationDialog extends Dialog {
         });
 
     }
-
-
 }

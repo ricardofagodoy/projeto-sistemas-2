@@ -107,18 +107,6 @@
             android:background="@drawable/rounded_corner"> -->
 
             <android.support.design.widget.FloatingActionButton
-                android:id="@+id/paid"
-                android:layout_width="@dimen/floatButtonsChildSize"
-                android:layout_height="@dimen/floatButtonsChildSize"
-                android:layout_marginBottom="@dimen/floatButtonsChildMargin"
-                android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
-                android:layout_marginTop="@dimen/floatButtonsChildMargin"
-                android:gravity="left|bottom"
-                android:src="@drawable/paid"
-                android:visibility="gone"
-                app:backgroundTint="@color/filterColor" />
-
-            <android.support.design.widget.FloatingActionButton
                 android:id="@+id/baby"
                 android:layout_width="@dimen/floatButtonsChildSize"
                 android:layout_height="@dimen/floatButtonsChildSize"
@@ -127,6 +115,18 @@
                 android:layout_marginTop="@dimen/floatButtonsChildMargin"
                 android:gravity="left|bottom"
                 android:src="@drawable/baby"
+                android:visibility="gone"
+                app:backgroundTint="@color/filterColor" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/wheel"
+                android:layout_width="@dimen/floatButtonsChildSize"
+                android:layout_height="@dimen/floatButtonsChildSize"
+                android:layout_marginBottom="@dimen/floatButtonsChildMargin"
+                android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
+                android:layout_marginTop="@dimen/floatButtonsChildMargin"
+                android:gravity="left|bottom"
+                android:src="@drawable/wheel"
                 android:visibility="gone"
                 app:backgroundTint="@color/filterColor" />
 
