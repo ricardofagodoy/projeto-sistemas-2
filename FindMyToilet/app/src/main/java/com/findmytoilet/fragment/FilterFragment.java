@@ -2,9 +2,7 @@ package com.findmytoilet.fragment;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.net.Uri;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -12,35 +10,33 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-
 import com.findmytoilet.R;
+import com.findmytoilet.controller.MapController;
+import com.findmytoilet.enums.Sex;
+import com.findmytoilet.model.Filter;
 
 public class FilterFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private Context context;
+
+    private Filter filter;
+
     private boolean toiletActive;
     private boolean waterActive;
     private boolean sexActive;
     private boolean toiletRatingActive;
     private boolean waterRatingActive;
-    private boolean coldActive;
-    private boolean babyActive;
-    private boolean paidActive;
-    private Context context;
 
     public FilterFragment() {
+
+        // TODO: LOAD USER PREFERENCES
+        this.filter = new Filter();
+
         this.toiletActive = false;
         this.waterActive = false;
         this.sexActive = false;
         this.toiletRatingActive = false;
         this.waterRatingActive = false;
-        this.coldActive = false;
-        this.babyActive = false;
-        this.paidActive = false;}
-
-    public static FilterFragment newInstance() {
-        return new FilterFragment();
     }
 
     @Override
@@ -51,20 +47,22 @@ public class FilterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_filters, container, false);
 
         final View toiletFilters = view.findViewById(R.id.toiletFilters);
 
-        final View sex = view.findViewById(R.id.unisex);
-        final View man = view.findViewById(R.id.man);
-        final View woman = view.findViewById(R.id.woman);
+        final Sex[] sexPositions = {Sex.UNISEX, Sex.MALE, Sex.FEMALE};
+        final FloatingActionButton sex = (FloatingActionButton) view.findViewById(R.id.unisex);
+        final FloatingActionButton man = (FloatingActionButton) view.findViewById(R.id.man);
+        final FloatingActionButton woman = (FloatingActionButton) view.findViewById(R.id.woman);
 
         final View ratingToilet = view.findViewById(R.id.ratingToilet);
         final View toiletHappy = view.findViewById(R.id.toiletHappy);
         final View toiletSad = view.findViewById(R.id.toiletSad);
 
         final FloatingActionButton paid = (FloatingActionButton) view.findViewById(R.id.paid);
-        final FloatingActionButton clean = (FloatingActionButton) view.findViewById(R.id.baby);
+        final FloatingActionButton baby = (FloatingActionButton) view.findViewById(R.id.baby);
 
         final View waterFilters = view.findViewById(R.id.waterFilters);
         final FloatingActionButton cold = (FloatingActionButton) view.findViewById(R.id.cold);
@@ -74,11 +72,9 @@ public class FilterFragment extends Fragment {
         final View waterSad = view.findViewById(R.id.waterSad);
 
 
-        toiletFilters.setOnClickListener(new View.OnClickListener()
-        {
+        toiletFilters.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int state = toiletActive ? View.GONE : View.VISIBLE;
 
                 if (waterActive)
@@ -91,21 +87,18 @@ public class FilterFragment extends Fragment {
                     ratingToilet.callOnClick();
 
 
-
                 toiletActive = !toiletActive;
 
                 sex.setVisibility(state);
                 ratingToilet.setVisibility(state);
                 paid.setVisibility(state);
-                clean.setVisibility(state);
+                baby.setVisibility(state);
             }
         });
 
-        waterFilters.setOnClickListener(new View.OnClickListener()
-        {
+        waterFilters.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int state = waterActive ? View.GONE : View.VISIBLE;
 
                 if (toiletActive)
@@ -121,11 +114,9 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        sex.setOnClickListener(new View.OnClickListener()
-        {
+        sex.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int state = sexActive ? View.GONE : View.VISIBLE;
 
                 sexActive = !sexActive;
@@ -135,11 +126,43 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        ratingToilet.setOnClickListener(new View.OnClickListener()
-        {
+        man.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
+
+                Sex temp = sexPositions[1];
+                sexPositions[1] = sexPositions[0];
+                sexPositions[0] = temp;
+
+                filter.setSex(temp);
+                applyFilter();
+
+                Drawable tempDrawable = sex.getDrawable();
+                sex.setImageDrawable(man.getDrawable());
+                man.setImageDrawable(tempDrawable);
+            }
+        });
+
+        woman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Sex temp = sexPositions[2];
+                sexPositions[2] = sexPositions[0];
+                sexPositions[0] = temp;
+
+                filter.setSex(temp);
+                applyFilter();
+
+                Drawable tempDrawable = sex.getDrawable();
+                sex.setImageDrawable(woman.getDrawable());
+                woman.setImageDrawable(tempDrawable);
+            }
+        });
+
+        ratingToilet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 int state = toiletRatingActive ? View.GONE : View.VISIBLE;
 
                 toiletRatingActive = !toiletRatingActive;
@@ -149,11 +172,9 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        ratingWater.setOnClickListener(new View.OnClickListener()
-        {
+        ratingWater.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 int state = waterRatingActive ? View.GONE : View.VISIBLE;
 
                 waterRatingActive = !waterRatingActive;
@@ -163,44 +184,41 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        clean.setOnClickListener(new View.OnClickListener()
-        {
+        baby.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                int color = babyActive ? R.color.filterColor : R.color.filterColorSelected;
+            public void onClick(View v) {
+                int color = filter.getBaby() ? R.color.filterColor : R.color.filterColorSelected;
 
-                babyActive = !babyActive;
+                filter.toggleBaby();
+                applyFilter();
 
-                clean.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context,color)));
+                baby.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
 
             }
         });
 
-        paid.setOnClickListener(new View.OnClickListener()
-        {
+        paid.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                int color = paidActive ? R.color.filterColor : R.color.filterColorSelected;
+            public void onClick(View v) {
+                int color = filter.getPaid() ? R.color.filterColor : R.color.filterColorSelected;
 
-                paidActive = !paidActive;
+                filter.togglePaid();
+                applyFilter();
 
-                paid.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context,color)));
+                paid.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
 
             }
         });
 
-        cold.setOnClickListener(new View.OnClickListener()
-        {
+        cold.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                int color = coldActive ? R.color.filterColor : R.color.filterColorSelected;
+            public void onClick(View v) {
+                int color = filter.getCold() ? R.color.filterColor : R.color.filterColorSelected;
 
-                coldActive = !coldActive;
+                filter.toggleCold();
+                applyFilter();
 
-                cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context,color)));
+                cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
 
             }
         });
@@ -208,32 +226,18 @@ public class FilterFragment extends Fragment {
         return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    private void applyFilter() {
+        MapController.getInstance().applyFilter(filter);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            //throw new RuntimeException(context.toString()
-                 //   + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
     }
 }

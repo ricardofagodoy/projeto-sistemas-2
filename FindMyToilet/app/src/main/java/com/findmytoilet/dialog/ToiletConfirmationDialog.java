@@ -93,7 +93,7 @@ public class ToiletConfirmationDialog extends Dialog {
             {
                 MapController mapController = MapController.getInstance();
 
-                mapController.addLocalities(
+                mapController.addLocality(
                         new Toilet(mapController.getPinPosition(), sex, paidActive, babyActive, wheelActive));
 
                 for (Dialog d : LocationTypeDialog.dialogs)

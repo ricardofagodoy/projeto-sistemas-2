@@ -19,9 +19,12 @@ public class UserController implements
     private GoogleApiClient mGoogleApiClient;
     private MapController map;
 
+    private Boolean firstPosition;
+
     public UserController(Context context, MapController map) {
 
         this.map = map;
+        this.firstPosition = true;
 
         mGoogleApiClient = new GoogleApiClient.Builder(context)
                 .addApi(LocationServices.API)
@@ -86,8 +89,15 @@ public class UserController implements
 
         if (this.map != null && location != null) {
 
-            this.map.animateCameraPosition(new LatLng
-                    (location.getLatitude(), location.getLongitude()));
+            if (this.firstPosition) {
+                this.map.moveCameraPositionZoom(new LatLng
+                        (location.getLatitude(), location.getLongitude()), null);
+
+                this.firstPosition = false;
+            }
+            else
+                this.map.animateCameraPositionZoom(new LatLng
+                        (location.getLatitude(), location.getLongitude()), null);
 
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="initial_zoom" format="float">16.0f</string>
+</resources>

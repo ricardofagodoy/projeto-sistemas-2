@@ -43,7 +43,6 @@ public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClick
         googleMap.setInfoWindowAdapter(new InformationWindowAdapter(context));
 
         // Draw localities
-        mapController.loadLocalities();
         mapController.drawLocalities();
     }
 
