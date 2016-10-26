@@ -26,50 +26,16 @@
             <!-- BORDER AROUND ALL SET OF FILTERS
             android:background="@drawable/rounded_corner"> -->
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:orientation="horizontal">
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/ratingWater"
-                    android:layout_width="@dimen/floatButtonsChildSize"
-                    android:layout_height="@dimen/floatButtonsChildSize"
-                    android:layout_marginBottom="@dimen/floatButtonsChildMargin"
-                    android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
-                    android:layout_marginRight="@dimen/floatButtonsChildMargin"
-                    android:layout_marginTop="@dimen/floatButtonsChildMargin"
-                    android:gravity="left|bottom"
-                    android:src="@drawable/neutral"
-                    android:visibility="gone"
-                    app:backgroundTint="@color/filterColor" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/waterHappy"
-                    android:layout_width="@dimen/floatButtonsChildSize"
-                    android:layout_height="@dimen/floatButtonsChildSize"
-                    android:layout_marginBottom="@dimen/floatButtonsChildMargin"
-                    android:layout_marginTop="@dimen/floatButtonsChildMargin"
-                    android:gravity="left|bottom"
-                    android:src="@drawable/happy"
-                    android:visibility="gone"
-                    app:backgroundTint="@color/filterColor" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/waterSad"
-                    android:layout_width="@dimen/floatButtonsChildSize"
-                    android:layout_height="@dimen/floatButtonsChildSize"
-                    android:layout_marginBottom="@dimen/floatButtonsChildMargin"
-                    android:layout_marginLeft="@dimen/floatButtonsChildMargin"
-                    android:layout_marginRight="@dimen/floatButtonsChildMargin"
-                    android:layout_marginTop="@dimen/floatButtonsChildMargin"
-                    android:gravity="left|bottom"
-                    android:src="@drawable/sad"
-                    android:visibility="gone"
-                    app:backgroundTint="@color/filterColor" />
-
-            </LinearLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/waterLike"
+                android:layout_width="@dimen/floatButtonsChildSize"
+                android:layout_height="@dimen/floatButtonsChildSize"
+                android:layout_marginBottom="@dimen/floatButtonsChildMargin"
+                android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
+                android:gravity="left|bottom"
+                android:src="@drawable/like"
+                android:visibility="gone"
+                app:backgroundTint="@color/filterColor" />
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/cold"
@@ -130,50 +96,19 @@
                 android:visibility="gone"
                 app:backgroundTint="@color/filterColor" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:orientation="horizontal">
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/toiletLike"
+                android:layout_width="@dimen/floatButtonsChildSize"
+                android:layout_height="@dimen/floatButtonsChildSize"
+                android:layout_marginBottom="@dimen/floatButtonsChildMargin"
+                android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
+                android:layout_marginTop="@dimen/floatButtonsChildMargin"
+                android:gravity="left|bottom"
+                android:src="@drawable/like"
+                android:visibility="gone"
+                app:backgroundTint="@color/filterColor" />
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/ratingToilet"
-                    android:layout_width="@dimen/floatButtonsChildSize"
-                    android:layout_height="@dimen/floatButtonsChildSize"
-                    android:layout_marginBottom="@dimen/floatButtonsChildMargin"
-                    android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
-                    android:layout_marginRight="@dimen/floatButtonsChildMargin"
-                    android:layout_marginTop="@dimen/floatButtonsChildMargin"
-                    android:gravity="left|bottom"
-                    android:src="@drawable/neutral"
-                    android:visibility="gone"
-                    app:backgroundTint="@color/filterColor" />
 
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/toiletHappy"
-                    android:layout_width="@dimen/floatButtonsChildSize"
-                    android:layout_height="@dimen/floatButtonsChildSize"
-                    android:layout_marginBottom="@dimen/floatButtonsChildMargin"
-                    android:layout_marginTop="@dimen/floatButtonsChildMargin"
-                    android:gravity="left|bottom"
-                    android:src="@drawable/happy"
-                    android:visibility="gone"
-                    app:backgroundTint="@color/filterColor" />
-
-                <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/toiletSad"
-                    android:layout_width="@dimen/floatButtonsChildSize"
-                    android:layout_height="@dimen/floatButtonsChildSize"
-                    android:layout_marginBottom="@dimen/floatButtonsChildMargin"
-                    android:layout_marginLeft="@dimen/floatButtonsChildMargin"
-                    android:layout_marginRight="@dimen/floatButtonsChildMargin"
-                    android:layout_marginTop="@dimen/floatButtonsChildMargin"
-                    android:gravity="left|bottom"
-                    android:src="@drawable/sad"
-                    android:visibility="gone"
-                    app:backgroundTint="@color/filterColor" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -201,7 +136,7 @@
                     android:layout_marginBottom="@dimen/floatButtonsChildMargin"
                     android:layout_marginTop="@dimen/floatButtonsChildMargin"
                     android:gravity="left|bottom"
-                    android:src="@drawable/man"
+                    android:src="@drawable/male"
                     android:visibility="gone"
                     app:backgroundTint="@color/filterColor" />
 
@@ -214,7 +149,7 @@
                     android:layout_marginRight="@dimen/floatButtonsChildMargin"
                     android:layout_marginTop="@dimen/floatButtonsChildMargin"
                     android:gravity="left|bottom"
-                    android:src="@drawable/woman"
+                    android:src="@drawable/female"
                     android:visibility="gone"
                     app:backgroundTint="@color/filterColor" />
 

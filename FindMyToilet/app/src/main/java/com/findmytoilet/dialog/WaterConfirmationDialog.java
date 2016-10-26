@@ -10,6 +10,9 @@ import android.view.View;
 import android.view.Window;
 
 import com.findmytoilet.R;
+import com.findmytoilet.controller.MapController;
+import com.findmytoilet.model.Water;
+import com.findmytoilet.network.LocalityHttp;
 
 public class WaterConfirmationDialog extends Dialog {
 
@@ -17,12 +20,16 @@ public class WaterConfirmationDialog extends Dialog {
 
     private Context context;
 
-    private boolean coldActive;
+    private Boolean coldActive;
+    private Boolean filteredActive;
+    private Boolean likeActive;
 
     public WaterConfirmationDialog(final Context context) {
         super(context);
         this.context = context;
         coldActive = false;
+        filteredActive = false;
+        likeActive = false;
     }
 
     @Override
@@ -34,39 +41,46 @@ public class WaterConfirmationDialog extends Dialog {
         LocationTypeDialog.dialogs.add(this);
 
         final FloatingActionButton cold = (FloatingActionButton) findViewById(R.id.cold);
-        final FloatingActionButton hot = (FloatingActionButton) findViewById(R.id.hot);
+        final FloatingActionButton filtered = (FloatingActionButton) findViewById(R.id.filtered);
 
         View confirm = findViewById(R.id.confirm);
 
         cold.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                coldActive = true;
-                cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
-                hot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
+                int color = coldActive ? R.color.filterColor : R.color.filterColorSelected;
+
+                coldActive = !coldActive;
+
+                cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 
-        hot.setOnClickListener(new View.OnClickListener() {
+        filtered.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                coldActive = false;
+                int color = filteredActive ? R.color.filterColor : R.color.filterColorSelected;
 
-                cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
-                hot.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+                filteredActive = !filteredActive;
+
+                filtered.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MapController mapController = MapController.getInstance();
+
+                LocalityHttp.getInstance().createLocality(
+                        new Water(mapController.getPinPosition(), coldActive, filteredActive, likeActive));
+
                 for (Dialog d : LocationTypeDialog.dialogs)
                     d.dismiss();
 
                 LocationTypeDialog.dialogs.clear();
+                mapController.clearPin();
             }
         });
-
-        hot.callOnClick();
     }
 }

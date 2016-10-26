@@ -20,8 +20,10 @@ public class ToiletConfirmationDialog extends Dialog {
 
     private Context context;
     private Sex sex;
-    private boolean babyActive;
-    private boolean wheelActive;
+    private Boolean babyActive;
+    private Boolean wheelActive;
+    private Boolean paidActive;
+    private Boolean likeActive;
 
     public ToiletConfirmationDialog(final Context context, Sex sex) {
         super(context);
@@ -29,6 +31,8 @@ public class ToiletConfirmationDialog extends Dialog {
         this.sex = sex;
         babyActive = false;
         wheelActive = false;
+        paidActive = false;
+        likeActive = false;
     }
 
     @Override
@@ -41,6 +45,7 @@ public class ToiletConfirmationDialog extends Dialog {
 
         final FloatingActionButton clean = (FloatingActionButton) findViewById(R.id.baby);
         final FloatingActionButton wheel = (FloatingActionButton) findViewById(R.id.wheel);
+        final FloatingActionButton paid = (FloatingActionButton) findViewById(R.id.paid);
 
         final View confirm = findViewById(R.id.confirm);
 
@@ -66,13 +71,24 @@ public class ToiletConfirmationDialog extends Dialog {
             }
         });
 
+        paid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int color = paidActive ? R.color.filterColor : R.color.filterColorSelected;
+
+                paidActive = !paidActive;
+
+                paid.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
+            }
+        });
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MapController mapController = MapController.getInstance();
 
                 LocalityHttp.getInstance().createLocality(
-                        new Toilet(mapController.getPinPosition(), sex, babyActive, wheelActive));
+                        new Toilet(mapController.getPinPosition(), sex, babyActive, wheelActive, paidActive, likeActive));
 
                 for (Dialog d : LocationTypeDialog.dialogs)
                     d.dismiss();

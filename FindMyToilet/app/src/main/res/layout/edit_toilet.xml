@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
             android:src="@drawable/report"
             android:background="@android:color/transparent"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="70dp"/>
+            android:layout_marginLeft="150dp"/>
 
        </LinearLayout>
 
@@ -55,21 +56,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/unisex"
             android:layout_width="@dimen/toilet_edit_filter_size"
             android:layout_height="@dimen/toilet_edit_filter_size"
-            android:id="@+id/unisex"
-            android:src="@drawable/unisex"
+            app:backgroundTint="@color/filterColor"
             android:layout_margin="@dimen/items_margin_between"
+            android:src="@drawable/unisex"
             />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editSex"
-            android:src="@drawable/edit"
-            android:layout_gravity="center_vertical|left"
-            android:background="@android:color/transparent" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/male"
+            android:layout_width="@dimen/toilet_edit_filter_size"
+            android:layout_height="@dimen/toilet_edit_filter_size"
+            app:backgroundTint="@color/filterColor"
+            android:layout_margin="@dimen/items_margin_between"
+
+            android:src="@drawable/male"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/female"
+            android:layout_width="@dimen/toilet_edit_filter_size"
+            android:layout_height="@dimen/toilet_edit_filter_size"
+            app:backgroundTint="@color/filterColor"
+            android:layout_margin="@dimen/items_margin_between"
+            android:src="@drawable/female"
+            />
 
     </LinearLayout>
 
@@ -78,95 +91,61 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="@dimen/toilet_edit_filter_size"
-        android:layout_height="@dimen/toilet_edit_filter_size"
-        android:id="@+id/clean"
-        android:src="@drawable/clean"
-        android:layout_margin="@dimen/items_margin_between"/>
 
-        <ImageButton
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/baby"
+            android:layout_width="@dimen/toilet_edit_filter_size"
+            android:layout_height="@dimen/toilet_edit_filter_size"
+            app:backgroundTint="@color/filterColor"
+            android:layout_margin="@dimen/items_margin_between"
+            android:src="@drawable/baby"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/paid"
+            android:layout_width="@dimen/toilet_edit_filter_size"
+            android:layout_height="@dimen/toilet_edit_filter_size"
+            app:backgroundTint="@color/filterColor"
+            android:layout_margin="@dimen/items_margin_between"
+            android:src="@drawable/paid"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/wheel"
+            android:layout_width="@dimen/toilet_edit_filter_size"
+            android:layout_height="@dimen/toilet_edit_filter_size"
+            app:backgroundTint="@color/filterColor"
+            android:layout_margin="@dimen/items_margin_between"
+            android:src="@drawable/wheel"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editClean"
-        android:src="@drawable/edit"
-        android:layout_gravity="center_vertical|left"
-        android:background="@android:color/transparent" />
-
-    </LinearLayout>
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    <ImageView
-        android:layout_width="@dimen/toilet_edit_filter_size"
-        android:layout_height="@dimen/toilet_edit_filter_size"
-        android:id="@+id/paid"
-        android:src="@drawable/paid"
-        android:layout_margin="@dimen/items_margin_between"/>
-
-        <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editPaid"
-        android:src="@drawable/edit"
-        android:layout_gravity="center_vertical|left"
-        android:background="@android:color/transparent" />
-
-    </LinearLayout>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    <ImageView
-        android:layout_width="@dimen/toilet_edit_filter_size"
-        android:layout_height="@dimen/toilet_edit_filter_size"
-        android:id="@+id/wheel"
-        android:src="@drawable/wheel"
-        android:layout_margin="@dimen/items_margin_between"/>
-
-        <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editWheel"
-        android:src="@drawable/edit"
-        android:layout_gravity="center_vertical|left"
-        android:background="@android:color/transparent" />
-
-    </LinearLayout>
-
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="@dimen/toilet_edit_rating_size"
-            android:layout_height="@dimen/toilet_edit_rating_size"
-            android:id="@+id/sad"
-            android:src="@drawable/sad"
-            android:layout_margin="@dimen/items_margin_between"/>
-
-        <ImageView
-            android:layout_width="@dimen/toilet_edit_rating_size"
-            android:layout_height="@dimen/toilet_edit_rating_size"
-            android:id="@+id/neutral"
-            android:src="@drawable/neutral"
-            android:layout_margin="@dimen/items_margin_between"/>
+        android:weightSum="1">
 
 
         <ImageView
             android:layout_width="@dimen/toilet_edit_rating_size"
             android:layout_height="@dimen/toilet_edit_rating_size"
-            android:id="@+id/happy"
-            android:src="@drawable/happy"
-            android:layout_margin="@dimen/items_margin_between"/>
+            android:id="@+id/toiletDislike"
+            android:src="@drawable/dislike"
+            android:layout_marginLeft="@dimen/rating_marginleft_between"
+            android:layout_marginTop="@dimen/rating_margintop_between"/>
+
+
+        <ImageView
+            android:layout_width="@dimen/toilet_edit_rating_size"
+            android:layout_height="@dimen/toilet_edit_rating_size"
+            android:id="@+id/toiletLike"
+            android:src="@drawable/like"
+            android:layout_marginLeft="@dimen/rating_marginleft_between"
+            android:layout_marginTop="@dimen/rating_margintop_between"
+            android:layout_weight="0.03" />
 
     </LinearLayout>
 

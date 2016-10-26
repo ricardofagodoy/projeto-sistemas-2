@@ -25,11 +25,14 @@
     <!-- Edit location dialog dimensions -->
     <dimen name="EditDialogPadding">10dp</dimen>
 
-    <dimen name="toilet_edit_filter_size">25dp</dimen>
-    <dimen name="toilet_edit_rating_size">40dp</dimen>
-    <dimen name="items_margin_between">15dp</dimen>
+    <dimen name="toilet_edit_filter_size">65dp</dimen>
+    <dimen name="toilet_edit_rating_size">80dp</dimen>
+    <dimen name="items_margin_between">20dp</dimen>
 
-    <dimen name="water_edit_filter_size">25dp</dimen>
-    <dimen name="water_edit_rating_size">40dp</dimen>
+    <dimen name="rating_marginleft_between">50dp</dimen>
+    <dimen name="rating_margintop_between">20dp</dimen>
+
+    <dimen name="water_edit_filter_size">80dp</dimen>
+    <dimen name="water_edit_rating_size">80dp</dimen>
 
 </resources>

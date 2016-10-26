@@ -38,16 +38,36 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:id="@+id/happy"
-            android:src="@drawable/happy"
+            android:id="@+id/male"
+            android:src="@drawable/male"
+            android:layout_marginRight="5dp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/female"
+            android:src="@drawable/female"
+            android:layout_marginRight="5dp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/toiletLike"
+            android:src="@drawable/like"
             android:layout_marginRight="5dp"/>
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:id="@+id/clean"
-            android:src="@drawable/clean"
+            android:id="@+id/baby"
+            android:src="@drawable/baby"
             android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/wheel"
+            android:src="@drawable/wheel"/>
 
     <ImageView
         android:layout_width="20dp"
@@ -56,11 +76,7 @@
         android:src="@drawable/paid"
         android:layout_marginRight="5dp"/>
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:id="@+id/wheel"
-        android:src="@drawable/wheel"/>
+
 
     </LinearLayout>
 

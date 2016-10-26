@@ -6,24 +6,27 @@ import com.google.android.gms.maps.model.LatLng;
 public class Toilet extends Locality {
 
     private Sex sex;
-    private boolean baby;
-    private boolean wheel;
+    private Boolean baby;
+    private Boolean wheel;
+    private Boolean paid;
+    private Boolean like;
 
     public Toilet(){}
 
-    public Toilet(LatLng location, Sex sex, boolean baby, boolean wheel){
+    public Toilet(LatLng location, Sex sex, Boolean baby, Boolean wheel, Boolean paid, Boolean like){
         super(location);
-
+        this.paid = paid;
         this.sex = sex;
         this.baby = baby;
         this.wheel = wheel;
+        this.like = like;
     }
 
-    public boolean isBaby() {
+    public Boolean isBaby() {
         return baby;
     }
 
-    public void setBaby(boolean baby) {
+    public void setBaby(Boolean baby) {
         this.baby = baby;
     }
 
@@ -35,11 +38,27 @@ public class Toilet extends Locality {
         this.sex = sex;
     }
 
-    public boolean isWheel() {
+    public Boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(Boolean paid) {
+        this.paid = paid;
+    }
+
+    public Boolean isWheel() {
         return wheel;
     }
 
-    public void setWheel(boolean wheel) {
+    public void setWheel(Boolean wheel) {
         this.wheel = wheel;
+    }
+
+    public Boolean isLike() {
+        return like;
+    }
+
+    public void setLike(Boolean like) {
+        this.like = like;
     }
 }

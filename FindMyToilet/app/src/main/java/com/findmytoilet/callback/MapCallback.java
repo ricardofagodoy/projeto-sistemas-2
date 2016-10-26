@@ -81,11 +81,13 @@ public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClick
             switch ((MarkerTags) tag) {
 
                 case TOILET:
-                    new ToiletEditDialog(context).show();
+                    new ToiletEditDialog(context, mapController.getLocalityFromMarker(marker)).show();
+                    marker.hideInfoWindow();
                     break;
 
                 case WATER:
-                    new WaterEditDialog(context).show();
+                    new WaterEditDialog(context, mapController.getLocalityFromMarker(marker)).show();
+                    marker.hideInfoWindow();
                     break;
 
                 case PIN:

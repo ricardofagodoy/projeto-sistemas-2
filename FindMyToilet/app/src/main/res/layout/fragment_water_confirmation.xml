@@ -35,11 +35,11 @@
         android:layout_marginLeft="40dp" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/hot"
+        android:id="@+id/filtered"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:backgroundTint="@color/filterColor"
-        android:src="@drawable/hot"
+        android:src="@drawable/filtered"
         android:layout_gravity="center|right"
         android:layout_marginRight="40dp" />
 

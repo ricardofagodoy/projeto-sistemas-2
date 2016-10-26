@@ -10,6 +10,8 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.findmytoilet.R;
 import com.findmytoilet.enums.Sex;
@@ -26,8 +28,8 @@ public class FilterFragment extends Fragment {
     private boolean toiletActive;
     private boolean waterActive;
     private boolean sexActive;
-    private boolean toiletRatingActive;
-    private boolean waterRatingActive;
+    private boolean toiletLikeActive;
+    private boolean waterLikeActive;
 
     public FilterFragment() {
 
@@ -37,8 +39,8 @@ public class FilterFragment extends Fragment {
         this.toiletActive = false;
         this.waterActive = false;
         this.sexActive = false;
-        this.toiletRatingActive = false;
-        this.waterRatingActive = false;
+        this.toiletLikeActive = false;
+        this.waterLikeActive = false;
     }
 
     public void addListener(FilterCallback listener) {
@@ -63,9 +65,7 @@ public class FilterFragment extends Fragment {
         final FloatingActionButton man = (FloatingActionButton) view.findViewById(R.id.man);
         final FloatingActionButton woman = (FloatingActionButton) view.findViewById(R.id.woman);
 
-        final View ratingToilet = view.findViewById(R.id.ratingToilet);
-        final View toiletHappy = view.findViewById(R.id.toiletHappy);
-        final View toiletSad = view.findViewById(R.id.toiletSad);
+        final FloatingActionButton toiletLike = (FloatingActionButton) view.findViewById(R.id.toiletLike);
 
         final FloatingActionButton baby = (FloatingActionButton) view.findViewById(R.id.baby);
         final FloatingActionButton wheel = (FloatingActionButton) view.findViewById(R.id.wheel);
@@ -73,9 +73,7 @@ public class FilterFragment extends Fragment {
         final View waterFilters = view.findViewById(R.id.waterFilters);
         final FloatingActionButton cold = (FloatingActionButton) view.findViewById(R.id.cold);
 
-        final View ratingWater = view.findViewById(R.id.ratingWater);
-        final View waterHappy = view.findViewById(R.id.waterHappy);
-        final View waterSad = view.findViewById(R.id.waterSad);
+        final FloatingActionButton waterLike = (FloatingActionButton) view.findViewById(R.id.waterLike);
 
 
         toiletFilters.setOnClickListener(new View.OnClickListener() {
@@ -89,14 +87,14 @@ public class FilterFragment extends Fragment {
                 if (sexActive)
                     sex.callOnClick();
 
-                if (toiletRatingActive)
-                    ratingToilet.callOnClick();
+                if (toiletLikeActive)
+                    toiletLike.callOnClick();
 
 
                 toiletActive = !toiletActive;
 
                 sex.setVisibility(state);
-                ratingToilet.setVisibility(state);
+                toiletLike.setVisibility(state);
                 baby.setVisibility(state);
                 wheel.setVisibility(state);
             }
@@ -110,13 +108,13 @@ public class FilterFragment extends Fragment {
                 if (toiletActive)
                     toiletFilters.callOnClick();
 
-                if (waterRatingActive)
-                    ratingWater.callOnClick();
+                if (waterLikeActive)
+                    waterLike.callOnClick();
 
                 waterActive = !waterActive;
 
                 cold.setVisibility(state);
-                ratingWater.setVisibility(state);
+                waterLike.setVisibility(state);
             }
         });
 
@@ -166,27 +164,27 @@ public class FilterFragment extends Fragment {
             }
         });
 
-        ratingToilet.setOnClickListener(new View.OnClickListener() {
+        toiletLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int state = toiletRatingActive ? View.GONE : View.VISIBLE;
+                int color = filter.isToiletLike() ? R.color.filterColor : R.color.filterColorSelected;
 
-                toiletRatingActive = !toiletRatingActive;
+                filter.toggleToiletLike();
+                applyFilter();
 
-                toiletHappy.setVisibility(state);
-                toiletSad.setVisibility(state);
+                toiletLike.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 
-        ratingWater.setOnClickListener(new View.OnClickListener() {
+        waterLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int state = waterRatingActive ? View.GONE : View.VISIBLE;
+                int color = filter.isWaterLike() ? R.color.filterColor : R.color.filterColorSelected;
 
-                waterRatingActive = !waterRatingActive;
+                filter.toggleWaterLike();
+                applyFilter();
 
-                waterHappy.setVisibility(state);
-                waterSad.setVisibility(state);
+                waterLike.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
             }
         });
 

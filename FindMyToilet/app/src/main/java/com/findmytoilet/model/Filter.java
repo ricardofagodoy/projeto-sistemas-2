@@ -8,16 +8,20 @@ public class Filter {
     private Boolean cold;
     private Boolean baby;
     private Boolean wheel;
+    private Boolean toiletLike;
+    private Boolean waterLike;
 
-    public Filter(Boolean cold, Sex sex, Boolean baby, Boolean wheel) {
+    public Filter(Boolean cold, Sex sex, Boolean baby, Boolean wheel, Boolean toiletLike, Boolean waterLike) {
         this.cold = cold;
         this.sex = sex;
         this.baby = baby;
         this.wheel = wheel;
+        this.toiletLike = toiletLike;
+        this.waterLike = waterLike;
     }
 
     public Filter() {
-        this(false, Sex.UNISEX, false, false);
+        this(false, Sex.UNISEX, false, false, false, false);
     }
 
     public Boolean isWheel() {
@@ -52,9 +56,28 @@ public class Filter {
         this.baby = !this.baby;
     }
 
+
+    public Boolean isToiletLike() {
+        return toiletLike;
+    }
+
+    public void toggleToiletLike() {
+        this.toiletLike = !this.toiletLike;
+    }
+
+
+    public Boolean isWaterLike() {
+        return waterLike;
+    }
+
+    public void toggleWaterLike() {
+        this.waterLike = !this.waterLike;
+    }
+
     @Override
     public String toString() {
         return "Sex: " + this.getSex().name() + " | " + "Cold: " + this.isCold() +
-                " | " + "Baby: " + this.isBaby() + " | " + "Wheel: " + this.isWheel();
+                " | " + "Baby: " + this.isBaby() + " | " + "Wheel: " + this.isWheel() +
+                " | " + "ToiletLike: " + this.isToiletLike() + " | " + "WaterLike: " + this.isWaterLike();
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
         android:src="@drawable/report"
         android:background="@android:color/transparent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"/>
+        android:layout_marginLeft="70dp"/>
 
     </LinearLayout>
 
@@ -58,21 +59,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/cold"
             android:layout_width="@dimen/water_edit_filter_size"
             android:layout_height="@dimen/water_edit_filter_size"
-            android:id="@+id/cold"
-            android:src="@drawable/cold"
+            app:backgroundTint="@color/filterColor"
             android:layout_margin="@dimen/items_margin_between"
+            android:src="@drawable/cold"
             />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editSex"
-            android:src="@drawable/edit"
-            android:layout_gravity="center_vertical|left"
-            android:background="@android:color/transparent" />
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/filtered"
+            android:layout_width="@dimen/water_edit_filter_size"
+            android:layout_height="@dimen/water_edit_filter_size"
+            app:backgroundTint="@color/filterColor"
+            android:layout_margin="@dimen/items_margin_between"
+            android:src="@drawable/filtered"
+            />
     </TableRow>
 
     <TableRow
@@ -82,23 +85,16 @@
         <ImageView
             android:layout_width="@dimen/water_edit_rating_size"
             android:layout_height="@dimen/water_edit_rating_size"
-            android:id="@+id/sad"
-            android:src="@drawable/sad"
-            android:layout_margin="@dimen/items_margin_between"/>
-
-        <ImageView
-            android:layout_width="@dimen/water_edit_rating_size"
-            android:layout_height="@dimen/water_edit_rating_size"
-            android:id="@+id/neutral"
-            android:src="@drawable/neutral"
+            android:id="@+id/waterDislike"
+            android:src="@drawable/dislike"
             android:layout_margin="@dimen/items_margin_between"/>
 
 
         <ImageView
             android:layout_width="@dimen/water_edit_rating_size"
             android:layout_height="@dimen/water_edit_rating_size"
-            android:id="@+id/happy"
-            android:src="@drawable/happy"
+            android:id="@+id/waterLike"
+            android:src="@drawable/like"
             android:layout_margin="@dimen/items_margin_between"/>
 
     </TableRow>

@@ -221,4 +221,14 @@ public class MapController implements LocalityHttp.LocalityCallback,
 
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(position, zoom));
     }
+
+    public Locality getLocalityFromMarker(Marker marker){
+        int i;
+
+        for (i = 0;i < localityMarkers.size(); i++)
+            if (localityMarkers.get(i).getMarker().equals(marker))
+                return localityMarkers.get(i).getLocality();
+
+        return null;
+    }
 }

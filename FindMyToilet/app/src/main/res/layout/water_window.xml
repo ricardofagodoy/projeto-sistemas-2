@@ -31,15 +31,22 @@
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:id="@+id/unisex"
+        android:id="@+id/cold"
         android:src="@drawable/cold"
         android:layout_marginRight="5dp" />
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:id="@+id/happy"
-            android:src="@drawable/happy"
+            android:id="@+id/filtered"
+            android:src="@drawable/filtered"
+            android:layout_marginRight="5dp" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/waterLike"
+            android:src="@drawable/like"
             android:layout_marginRight="5dp"/>
 
     </LinearLayout>
