@@ -29,13 +29,15 @@ public class LocalityMarker {
         // If it's WATER
         if (this.getLocality() instanceof Water) {
 
+            Water water = (Water) this.getLocality();
+
             // COLD is active
             if (filter.isCold())
-                return ((Water) this.getLocality()).isCold();
+                return water.isCold();
 
             // LIKE is active
-            if (filter.isWaterLike())
-                return ((Water) this.getLocality()).isLike();
+            if (filter.isWaterLike() && water.getRating() < 0)
+                return false;
 
             return true;
         }
@@ -49,7 +51,7 @@ public class LocalityMarker {
         if (filter.isBaby() && !toilet.isBaby())
             return false;
 
-        if (filter.isToiletLike() && !toilet.isLike())
+        if (filter.isToiletLike() && toilet.getRating() < 0)
             return false;
 
         if (!toilet.getSex().equals(Sex.UNISEX) && !toilet.getSex().equals(filter.getSex()))

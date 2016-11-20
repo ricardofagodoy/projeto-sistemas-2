@@ -6,16 +6,15 @@ public class Water extends Locality{
 
     private Boolean cold;
     private Boolean filtered;
-    private Boolean like;
 
     public Water(){
     }
 
-    public Water(LatLng location, Boolean cold, Boolean filtered, Boolean like){
+    public Water(LatLng location, Boolean cold, Boolean filtered, Integer rating){
         super(location);
         this.cold = cold;
         this.filtered = filtered;
-        this.like = like;
+        this.setRating(rating);
     }
 
     public Boolean isCold() {
@@ -34,11 +33,8 @@ public class Water extends Locality{
         this.filtered = filtered;
     }
 
-    public Boolean isLike() {
-        return like;
+    public String toString(){
+        return "id: " + this.getId() + " Location: " + this.getLocation() + " Cold:" + this.isCold() + " Filtered: " + this.isFiltered();
     }
 
-    public void setLike(Boolean like) {
-        this.like = like;
-    }
 }

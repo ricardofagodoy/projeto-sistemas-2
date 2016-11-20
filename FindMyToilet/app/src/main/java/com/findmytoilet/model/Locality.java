@@ -1,35 +1,46 @@
 package com.findmytoilet.model;
 
-import android.graphics.Bitmap;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-import com.google.android.gms.maps.model.LatLng;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Locality {
 
     private LatLng location;
-    private Integer id;
+
+    @JsonProperty ("_id")
+    private String id;
+    private Integer rating;
 
     public Locality(){
 
     }
 
-    public Locality(LatLng location){
-        this.location = location;
+    public Locality(com.google.android.gms.maps.model.LatLng location){
+        this.location = new LatLng(location.latitude, location.longitude);
     }
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public void setCurrentLocation(LatLng current) {
-        this.location = current;
+    public void setLocation(Double latitude, Double longitude) {
+        this.location = new LatLng(latitude, longitude);
     }
 
-    public LatLng getCurrentLocation() {
-        return this.location;
+    public void setLocation(LatLng location) {
+        this.location = location;
     }
+
+    public com.google.android.gms.maps.model.LatLng getLocation() {
+        return this.location.getLatLng();
+    }
+
+    public Integer getRating(){   return this.rating;  }
+
+    public void setRating(Integer rating){   this.rating = rating;   }
 }

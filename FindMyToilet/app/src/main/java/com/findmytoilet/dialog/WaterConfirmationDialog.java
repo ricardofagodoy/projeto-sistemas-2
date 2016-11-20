@@ -73,7 +73,7 @@ public class WaterConfirmationDialog extends Dialog {
                 MapController mapController = MapController.getInstance();
 
                 LocalityHttp.getInstance().createLocality(
-                        new Water(mapController.getPinPosition(), coldActive, filteredActive, likeActive));
+                        new Water(mapController.getPinPosition(), coldActive, filteredActive, 0));
 
                 for (Dialog d : LocationTypeDialog.dialogs)
                     d.dismiss();

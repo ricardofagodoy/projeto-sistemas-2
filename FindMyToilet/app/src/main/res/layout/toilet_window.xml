@@ -59,6 +59,13 @@
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:id="@+id/toiletDislike"
+            android:src="@drawable/dislike"
+            android:layout_marginRight="5dp"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:id="@+id/baby"
             android:src="@drawable/baby"
             android:layout_marginRight="5dp"/>

@@ -49,6 +49,13 @@
             android:src="@drawable/like"
             android:layout_marginRight="5dp"/>
 
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/waterDislike"
+            android:src="@drawable/dislike"
+            android:layout_marginRight="5dp"/>
+
     </LinearLayout>
 
 </LinearLayout>

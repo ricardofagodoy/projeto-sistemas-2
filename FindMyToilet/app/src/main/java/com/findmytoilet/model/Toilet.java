@@ -9,17 +9,16 @@ public class Toilet extends Locality {
     private Boolean baby;
     private Boolean wheel;
     private Boolean paid;
-    private Boolean like;
 
     public Toilet(){}
 
-    public Toilet(LatLng location, Sex sex, Boolean baby, Boolean wheel, Boolean paid, Boolean like){
+    public Toilet(LatLng location, Sex sex, Boolean baby, Boolean wheel, Boolean paid, Integer rating){
         super(location);
         this.paid = paid;
         this.sex = sex;
         this.baby = baby;
         this.wheel = wheel;
-        this.like = like;
+        this.setRating(rating);
     }
 
     public Boolean isBaby() {
@@ -54,11 +53,8 @@ public class Toilet extends Locality {
         this.wheel = wheel;
     }
 
-    public Boolean isLike() {
-        return like;
+    public String toString(){
+        return "id: " + this.getId() + " Location: " + this.getLocation() + " Sex: " + this.getSex() + " Baby:" + this.isBaby() + " Paid: " + this.isPaid();
     }
 
-    public void setLike(Boolean like) {
-        this.like = like;
-    }
 }

@@ -53,8 +53,11 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                         if (!toilet.isPaid())
                             view.findViewById(R.id.paid).setVisibility(View.GONE);
 
-                        if (!toilet.isLike())
+                        if (toilet.getRating() >= 0)
+                            view.findViewById(R.id.toiletDislike).setVisibility(View.GONE);
+                        else
                             view.findViewById(R.id.toiletLike).setVisibility(View.GONE);
+
 
                         switch(toilet.getSex()){
                             case UNISEX:
@@ -91,7 +94,9 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                         if (!water.isFiltered())
                             view.findViewById(R.id.filtered).setVisibility(View.GONE);
 
-                        if (!water.isLike())
+                        if (water.getRating() >= 0)
+                            view.findViewById(R.id.waterDislike).setVisibility(View.GONE);
+                        else
                             view.findViewById(R.id.waterLike).setVisibility(View.GONE);
 
                     }

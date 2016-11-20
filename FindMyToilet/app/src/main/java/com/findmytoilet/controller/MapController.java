@@ -120,7 +120,7 @@ public class MapController implements LocalityHttp.LocalityCallback,
         if (l instanceof Toilet) {
 
             marker = map.addMarker(new MarkerOptions().
-                    position(l.getCurrentLocation()).
+                    position(l.getLocation()).
                     icon(BitmapDescriptorFactory.fromBitmap(toiletImage)));
 
             marker.setTag(MarkerTags.TOILET);
@@ -128,7 +128,7 @@ public class MapController implements LocalityHttp.LocalityCallback,
         } else if (l instanceof Water) {
 
             marker = map.addMarker(new MarkerOptions().
-                    position(l.getCurrentLocation()).
+                    position(l.getLocation()).
                     icon(BitmapDescriptorFactory.fromBitmap(waterImage)));
 
             marker.setTag(MarkerTags.WATER);
