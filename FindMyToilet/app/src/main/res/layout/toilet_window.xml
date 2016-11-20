@@ -16,12 +16,13 @@
         />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fake_toilet_location"
-        android:id="@+id/textView4"
-        android:textSize="@dimen/textFontSize"
-        android:layout_marginBottom="10dp"/>
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:text=""
+        android:id="@+id/address"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:textSize="@dimen/textFontSize" />
 
     <LinearLayout
         android:orientation="horizontal"

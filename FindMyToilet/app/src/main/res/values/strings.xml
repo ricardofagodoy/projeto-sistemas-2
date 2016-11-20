@@ -7,8 +7,6 @@
 
     <!-- New location - Information window -->
     <string name="new_location_title">Adicionar novo local</string>
-    <string name="fake_street_name">Rua Pedro Henrique Cardoso</string>
-    <string name="fake_place_name">Bairro Guanabara</string>
 
     <!-- Water - Information window -->
     <string name="water">Bebedouro</string>

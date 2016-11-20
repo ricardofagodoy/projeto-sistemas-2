@@ -175,6 +175,8 @@ public class MapController implements LocalityHttp.LocalityCallback,
         // Load all localities to marker list
         for (Locality l : localities)
             addLocality(l);
+
+        applyFilter();
     }
 
     @Override
@@ -186,6 +188,18 @@ public class MapController implements LocalityHttp.LocalityCallback,
         LocalityMarker lm = this.addLocality(locality);
 
         // Apply filter to new locality
+        lm.getMarker().setVisible(lm.matchesFilter(filter));
+    }
+
+    @Override
+    public void OnLocalityUpdated(Locality locality) {
+
+        if (locality == null)
+            return;
+
+        LocalityMarker lm = this.getLocalityMarkerFromLocality(locality);
+
+        // Apply filter to the updated locality
         lm.getMarker().setVisible(lm.matchesFilter(filter));
     }
 
@@ -223,11 +237,17 @@ public class MapController implements LocalityHttp.LocalityCallback,
     }
 
     public Locality getLocalityFromMarker(Marker marker){
-        int i;
-
-        for (i = 0;i < localityMarkers.size(); i++)
+        for (int i = 0;i < localityMarkers.size(); i++)
             if (localityMarkers.get(i).getMarker().equals(marker))
                 return localityMarkers.get(i).getLocality();
+
+        return null;
+    }
+
+    public LocalityMarker getLocalityMarkerFromLocality(Locality locality){
+        for (int i = 0;i < localityMarkers.size(); i++)
+            if (localityMarkers.get(i).getLocality().equals(locality))
+                return localityMarkers.get(i);
 
         return null;
     }

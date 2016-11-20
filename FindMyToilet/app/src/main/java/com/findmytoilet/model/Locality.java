@@ -11,6 +11,7 @@ public class Locality {
     @JsonProperty ("_id")
     private String id;
     private Integer rating;
+    private String streetName;
 
     public Locality(){
 
@@ -43,4 +44,12 @@ public class Locality {
     public Integer getRating(){   return this.rating;  }
 
     public void setRating(Integer rating){   this.rating = rating;   }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
 }

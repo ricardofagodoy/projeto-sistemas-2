@@ -8,14 +8,18 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.findmytoilet.R;
 import com.findmytoilet.controller.MapController;
 import com.findmytoilet.enums.Sex;
 import com.findmytoilet.model.Locality;
 import com.findmytoilet.model.Toilet;
+import com.findmytoilet.network.LocalityHttp;
 import com.google.android.gms.maps.model.Marker;
 
 public class ToiletEditDialog extends Dialog {
@@ -36,6 +40,8 @@ public class ToiletEditDialog extends Dialog {
         wheelActive = false;
         paidActive = false;
         this.context = context;
+
+
     }
 
     @Override
@@ -45,6 +51,11 @@ public class ToiletEditDialog extends Dialog {
         this.setCancelable(true);
 
         View reportButton = findViewById(R.id.report);
+        View editButton = findViewById(R.id.edit);
+        final ImageView like = (ImageView) findViewById(R.id.toiletLike);
+        final ImageView dislike = (ImageView) findViewById(R.id.toiletDislike);
+
+
         final FloatingActionButton unisex = (FloatingActionButton) findViewById(R.id.unisex);
         final FloatingActionButton male = (FloatingActionButton) findViewById(R.id.male);
         final FloatingActionButton female = (FloatingActionButton) findViewById(R.id.female);
@@ -54,6 +65,7 @@ public class ToiletEditDialog extends Dialog {
         final FloatingActionButton paid = (FloatingActionButton) findViewById(R.id.paid);
 
 
+        ((TextView) findViewById(R.id.address)).setText(toilet.getStreetName());
 
         switch (toilet.getSex()){
             case UNISEX:
@@ -88,10 +100,12 @@ public class ToiletEditDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 toilet.setSex(Sex.UNISEX);
+                updateLocality();
 
                 unisex.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
                 female.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
                 male.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
+
             }
         });
 
@@ -99,6 +113,7 @@ public class ToiletEditDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 toilet.setSex(Sex.MALE);
+                updateLocality();
 
                 male.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
                 female.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
@@ -110,6 +125,7 @@ public class ToiletEditDialog extends Dialog {
             @Override
             public void onClick(View v) {
                 toilet.setSex(Sex.FEMALE);
+                updateLocality();
 
                 female.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
                 male.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColor)));
@@ -126,6 +142,7 @@ public class ToiletEditDialog extends Dialog {
 
                 baby.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
                 toilet.setBaby(babyActive);
+                updateLocality();
             }
         });
 
@@ -138,6 +155,7 @@ public class ToiletEditDialog extends Dialog {
 
                 wheel.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
                 toilet.setWheel(wheelActive);
+                updateLocality();
             }
         });
 
@@ -150,19 +168,81 @@ public class ToiletEditDialog extends Dialog {
 
                 paid.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
                 toilet.setPaid(paidActive);
+                updateLocality();
             }
         });
 
 
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                if (!like.getTag().equals("pressed")) {
+                    like.setImageResource(R.drawable.likepressed);
+                    dislike.setImageResource(R.drawable.dislike);
+
+                    if (dislike.getTag().equals("pressed"))
+                        LocalityHttp.getInstance().rateLocality(toilet.getId(), 2);
+                    else
+                        LocalityHttp.getInstance().rateLocality(toilet.getId(), 1);
+
+                    like.setTag("pressed");
+                    dislike.setTag("");
+
+                }
+            }
+        });
+
+        dislike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (!dislike.getTag().equals("pressed")) {
+                    dislike.setImageResource(R.drawable.dislikepressed);
+                    like.setImageResource(R.drawable.like);
+
+                    if (like.getTag().equals("pressed"))
+                        LocalityHttp.getInstance().rateLocality(toilet.getId(), -2);
+                    else
+                        LocalityHttp.getInstance().rateLocality(toilet.getId(), -1);
+
+                    dislike.setTag("pressed");
+                    like.setTag("");
+
+                }
+            }
+        });
 
 
         reportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ReportDialog(context).show();
+                new ReportDialog(context, toilet.getId()).show();
             }
         });
+
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                unisex.setClickable(!unisex.isClickable());
+                male.setClickable(!male.isClickable());
+                female.setClickable(!female.isClickable());
+                wheel.setClickable(!wheel.isClickable());
+                paid.setClickable(!paid.isClickable());
+                baby.setClickable(!baby.isClickable());
+            }
+        });
+
+        editButton.callOnClick();
     }
+
+    private void updateLocality(){
+        LocalityHttp.getInstance().updateLocality(toilet);
+    }
+
+
+
+
+
 
 }

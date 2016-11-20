@@ -22,31 +22,31 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"/>
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit"
+            android:src="@drawable/edit"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"/>
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/report"
         android:src="@drawable/report"
         android:background="@android:color/transparent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="70dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fake_water_location"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text=""
         android:id="@+id/address"
-        android:textSize="@dimen/textFontSize"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bairro Guanabara"
-        android:id="@+id/address2"
         android:textSize="@dimen/textFontSize"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"/>
@@ -87,6 +87,7 @@
             android:layout_height="@dimen/water_edit_rating_size"
             android:id="@+id/waterDislike"
             android:src="@drawable/dislike"
+            android:tag=""
             android:layout_margin="@dimen/items_margin_between"/>
 
 
@@ -95,7 +96,9 @@
             android:layout_height="@dimen/water_edit_rating_size"
             android:id="@+id/waterLike"
             android:src="@drawable/like"
-            android:layout_margin="@dimen/items_margin_between"/>
+            android:tag=""
+            android:layout_margin="@dimen/items_margin_between"
+            android:elevation="1dp" />
 
     </TableRow>
 

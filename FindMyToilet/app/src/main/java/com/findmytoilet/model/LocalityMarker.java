@@ -39,6 +39,10 @@ public class LocalityMarker {
             if (filter.isWaterLike() && water.getRating() < 0)
                 return false;
 
+            // FILTERED is active
+            if (filter.isWaterFiltered())
+                return water.isFiltered();
+
             return true;
         }
 

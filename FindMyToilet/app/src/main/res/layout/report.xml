@@ -29,12 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/report_cause"
-            android:id="@+id/subTitle"
+            android:id="@+id/textview"
             android:textSize="@dimen/titleFontSize"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"/>
 
-        <EditText android:id="@+id/editText"
+        <EditText android:id="@+id/reason"
             android:layout_width="150dp"
             android:layout_marginLeft="15dp" />
     </TableRow>
@@ -44,7 +44,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editSex"
+        android:id="@+id/report"
         android:text="@string/send"
         android:layout_gravity="center_horizontal"
         android:background="@color/button_material_light"

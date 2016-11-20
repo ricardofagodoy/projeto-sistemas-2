@@ -49,6 +49,17 @@
                 app:backgroundTint="@color/filterColor" />
 
             <android.support.design.widget.FloatingActionButton
+                android:id="@+id/waterFiltered"
+                android:layout_width="@dimen/floatButtonsChildSize"
+                android:layout_height="@dimen/floatButtonsChildSize"
+                android:layout_marginBottom="@dimen/floatButtonsChildMargin"
+                android:layout_marginLeft="@dimen/floatButtonsChildMarginLeft"
+                android:gravity="left|bottom"
+                android:src="@drawable/filtered"
+                android:visibility="gone"
+                app:backgroundTint="@color/filterColor" />
+
+            <android.support.design.widget.FloatingActionButton
                 android:id="@+id/waterFilters"
                 android:layout_width="@dimen/floatButtonsSize"
                 android:layout_height="@dimen/floatButtonsSize"

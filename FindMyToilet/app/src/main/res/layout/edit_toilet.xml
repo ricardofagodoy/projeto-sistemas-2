@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -25,31 +26,32 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/edit"
+            android:src="@drawable/edit"
+            android:background="@android:color/transparent"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="120dp"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/report"
             android:src="@drawable/report"
             android:background="@android:color/transparent"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="150dp"/>
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"/>
 
        </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fake_toilet_location"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text=""
         android:id="@+id/address"
         android:textSize="@dimen/textFontSize"
         android:textStyle="bold"
         android:layout_marginLeft="10dp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fake_place_name"
-        android:id="@+id/address2"
-        android:textSize="@dimen/textFontSize"
-        android:textStyle="bold"
-        android:layout_marginLeft="10dp"/>
 
     <LinearLayout
         android:orientation="horizontal"
@@ -62,8 +64,7 @@
             android:layout_height="@dimen/toilet_edit_filter_size"
             app:backgroundTint="@color/filterColor"
             android:layout_margin="@dimen/items_margin_between"
-            android:src="@drawable/unisex"
-            />
+            android:src="@drawable/unisex" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/male"
@@ -71,7 +72,6 @@
             android:layout_height="@dimen/toilet_edit_filter_size"
             app:backgroundTint="@color/filterColor"
             android:layout_margin="@dimen/items_margin_between"
-
             android:src="@drawable/male"
             />
 
@@ -122,7 +122,7 @@
 
     </LinearLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,6 +134,7 @@
             android:layout_height="@dimen/toilet_edit_rating_size"
             android:id="@+id/toiletDislike"
             android:src="@drawable/dislike"
+            android:tag=""
             android:layout_marginLeft="@dimen/rating_marginleft_between"
             android:layout_marginTop="@dimen/rating_margintop_between"/>
 
@@ -143,6 +144,7 @@
             android:layout_height="@dimen/toilet_edit_rating_size"
             android:id="@+id/toiletLike"
             android:src="@drawable/like"
+            android:tag=""
             android:layout_marginLeft="@dimen/rating_marginleft_between"
             android:layout_marginTop="@dimen/rating_margintop_between"
             android:layout_weight="0.03" />

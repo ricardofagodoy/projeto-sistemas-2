@@ -1,21 +1,27 @@
 package com.findmytoilet.fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.findmytoilet.R;
 import com.findmytoilet.enums.Sex;
 import com.findmytoilet.model.Filter;
+
+import java.io.IOException;
 
 public class FilterFragment extends Fragment {
 
@@ -24,6 +30,9 @@ public class FilterFragment extends Fragment {
     private Context context;
     private FilterCallback mListener;
     private Filter filter;
+    private SharedPreferences pref;
+    private ObjectMapper mapper;
+    private Editor edit;
 
     private boolean toiletActive;
     private boolean waterActive;
@@ -33,9 +42,7 @@ public class FilterFragment extends Fragment {
 
     public FilterFragment() {
 
-        // TODO: LOAD USER PREFERENCES
         this.filter = new Filter();
-
         this.toiletActive = false;
         this.waterActive = false;
         this.sexActive = false;
@@ -45,11 +52,30 @@ public class FilterFragment extends Fragment {
 
     public void addListener(FilterCallback listener) {
         this.mListener = listener;
+        applyFilter();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            mapper = new ObjectMapper();
+
+            pref = PreferenceManager.getDefaultSharedPreferences(context);
+
+            String filtersJSON = pref.getString("filters", null);
+
+            if (filtersJSON != null)
+                filter = mapper.readValue(filtersJSON, Filter.class);
+
+        }catch(IOException e)
+        {
+            Log.e("Getting user filters",e.getMessage());
+        }
+
+
+
     }
 
     @Override
@@ -72,8 +98,10 @@ public class FilterFragment extends Fragment {
 
         final View waterFilters = view.findViewById(R.id.waterFilters);
         final FloatingActionButton cold = (FloatingActionButton) view.findViewById(R.id.cold);
+        final FloatingActionButton waterFiltered = (FloatingActionButton) view.findViewById(R.id.waterFiltered);
 
         final FloatingActionButton waterLike = (FloatingActionButton) view.findViewById(R.id.waterLike);
+
 
 
         toiletFilters.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +143,7 @@ public class FilterFragment extends Fragment {
 
                 cold.setVisibility(state);
                 waterLike.setVisibility(state);
+                waterFiltered.setVisibility(state);
             }
         });
 
@@ -226,12 +255,77 @@ public class FilterFragment extends Fragment {
             }
         });
 
+
+        waterFiltered.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int color = filter.isWaterFiltered() ? R.color.filterColor : R.color.filterColorSelected;
+
+                filter.toggleWaterFiltered();
+                applyFilter();
+
+                waterFiltered.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, color)));
+
+            }
+        });
+
+
+        //Adjust the filters if they are selected on the user filter settings
+        if (filter.isWaterFiltered())
+            waterFiltered.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+
+        if (filter.isCold())
+            cold.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+
+        if (filter.isWaterLike())
+            waterLike.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+
+        if (filter.getSex() == Sex.MALE) {
+            Sex temp = sexPositions[1];
+            sexPositions[1] = sexPositions[0];
+            sexPositions[0] = temp;
+
+            Drawable tempDrawable = sex.getDrawable();
+            sex.setImageDrawable(man.getDrawable());
+            man.setImageDrawable(tempDrawable);
+        }
+        else if (filter.getSex() == Sex.FEMALE) {
+            Sex temp = sexPositions[2];
+            sexPositions[2] = sexPositions[0];
+            sexPositions[0] = temp;
+
+            Drawable tempDrawable = sex.getDrawable();
+            sex.setImageDrawable(woman.getDrawable());
+            woman.setImageDrawable(tempDrawable);
+        }
+
+        if (filter.isBaby())
+            baby.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+
+        if (filter.isWheel())
+            wheel.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+
+        if (filter.isToiletLike())
+            toiletLike.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
+
+
         return view;
     }
 
     private void applyFilter() {
         if (mListener != null)
             mListener.onFilterChanged(filter);
+
+        try {
+             edit = pref.edit();
+
+            edit.putString("filters", mapper.writeValueAsString(filter));
+
+            edit.commit();
+        }catch(Exception e){
+            Log.e(TAG, e.getMessage());
+        }
+
     }
 
     @Override

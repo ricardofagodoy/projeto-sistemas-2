@@ -2,8 +2,11 @@ package com.findmytoilet.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.findmytoilet.R;
 import com.findmytoilet.controller.MapController;
@@ -14,6 +17,10 @@ import com.findmytoilet.model.Toilet;
 import com.findmytoilet.model.Water;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.vision.text.Text;
+
+import java.util.List;
+import java.util.Locale;
 
 public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
@@ -78,8 +85,11 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                                 view.findViewById(R.id.female).setVisibility(View.GONE);
                                 break;
                         }
+
+                        ((TextView) view.findViewById(R.id.address)).setText(locality.getStreetName());
                     }
                     toggleEmergencyButton(true);
+
                     break;
 
                 case WATER:
@@ -99,6 +109,8 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                         else
                             view.findViewById(R.id.waterLike).setVisibility(View.GONE);
 
+                        ((TextView) view.findViewById(R.id.address)).setText(locality.getStreetName());
+
                     }
                     toggleEmergencyButton(true);
                     break;
@@ -106,6 +118,22 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                 case PIN:
                     viewId = R.layout.new_location_window;
                     view = ((Activity) context).getLayoutInflater().inflate(viewId, null);
+
+                    try {
+                        Geocoder geocoder;
+                        List<Address> addresses;
+                        geocoder = new Geocoder(context, Locale.getDefault());
+
+                        addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
+
+                        ((TextView) view.findViewById(R.id.address)).setText(addresses.get(0).getAddressLine(0));
+
+                    }catch(Exception e){
+                        Log.e(TAG, e.getMessage());
+                    }
+
+
+
                     toggleEmergencyButton(false);
                     break;
 
