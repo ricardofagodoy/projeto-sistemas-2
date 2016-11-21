@@ -69,7 +69,7 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                             view.findViewById(R.id.toiletLike).setVisibility(View.GONE);
 
 
-                        switch(toilet.getSex()){
+                        switch (toilet.getSex()) {
                             case UNISEX:
                                 view.findViewById(R.id.male).setVisibility(View.GONE);
                                 view.findViewById(R.id.female).setVisibility(View.GONE);
@@ -125,17 +125,15 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                     try {
 
                         geocoder = new Geocoder(context, Locale.getDefault());
+                        addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
 
-                        if ((addresses != null) && (addresses.size() > 0)) {
-                            addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
-
+                        if ((addresses != null) && (addresses.size() > 0))
                             ((TextView) view.findViewById(R.id.address)).setText(addresses.get(0).getAddressLine(0));
-                        }
 
-                    }catch(Exception e){
+
+                    } catch (Exception e) {
                         Log.e(TAG, e.getMessage());
                     }
-
 
 
                     toggleEmergencyButton(false, null);

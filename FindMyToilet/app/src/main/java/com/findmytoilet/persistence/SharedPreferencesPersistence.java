@@ -21,7 +21,7 @@ public class SharedPreferencesPersistence {
     private static Editor edit;
     private static Map<String, Integer> map;
 
-    public SharedPreferencesPersistence(){
+    public SharedPreferencesPersistence() {
 
     }
 
@@ -31,19 +31,19 @@ public class SharedPreferencesPersistence {
         getPreferenceRating();
     }
 
-    public static Filter getPreferenceFilters(){
+    public static Filter getPreferenceFilters() {
+
         try {
             String filtersJSON = pref.getString("filters", null);
 
             if (filtersJSON != null)
                 return mapper.readValue(filtersJSON, Filter.class);
 
-        }catch(IOException e)
-        {
-            Log.e("Getting user filters",e.getMessage());
+        } catch (IOException e) {
+            Log.e("Getting user filters", e.getMessage());
         }
 
-        return null;
+        return new Filter();
     }
 
     public static void setPreferenceFilters(Filter filter) {
@@ -54,12 +54,12 @@ public class SharedPreferencesPersistence {
             edit.putString("filters", mapper.writeValueAsString(filter));
 
             edit.commit();
-        }catch (IOException e) {
+        } catch (IOException e) {
             Log.e("Getting user filters", e.getMessage());
         }
     }
 
-    public static Map<String, Integer> getPreferenceRating(){
+    public static Map<String, Integer> getPreferenceRating() {
 
         if (map != null)
             return map;
@@ -73,9 +73,8 @@ public class SharedPreferencesPersistence {
                 return map;
             }
 
-        }catch(IOException e)
-        {
-            Log.e("Getting user ratings",e.getMessage());
+        } catch (IOException e) {
+            Log.e("Getting user ratings", e.getMessage());
         }
 
         map = new HashMap<String, Integer>();
@@ -95,11 +94,10 @@ public class SharedPreferencesPersistence {
             edit.putString("rating", mapper.writeValueAsString(map));
 
             edit.commit();
-        }catch (IOException e) {
+        } catch (IOException e) {
             Log.e("Getting user ratings", e.getMessage());
         }
     }
-
 
 
 }
