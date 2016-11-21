@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import com.findmytoilet.R;
 import com.findmytoilet.callback.AutocompletePlaceCallback;
 import com.findmytoilet.callback.MapCallback;
+import com.findmytoilet.persistence.SharedPreferencesPersistence;
 import com.google.android.gms.location.places.AutocompleteFilter;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -17,6 +18,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        SharedPreferencesPersistence.initialize(this);
         setContentView(R.layout.activity_main);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -24,6 +26,8 @@ public class MainActivity extends FragmentActivity {
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(new MapCallback(this));
+
+
 
         // Configure autocomplete search box
         configureAutocompletePlace();

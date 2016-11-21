@@ -1,7 +1,10 @@
 package com.findmytoilet.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.net.Uri;
 import android.util.Log;
 
 import com.findmytoilet.R;
@@ -41,12 +44,15 @@ public class MapController implements LocalityHttp.LocalityCallback,
     private Filter filter;
 
     private Float initialZoom;
+    private Float maxDistanceWalk;
     private Marker pin;
 
     private List<LocalityMarker> localityMarkers;
 
     private Bitmap toiletImage;
     private Bitmap waterImage;
+
+    private Location userLocation;
 
     /* Constructors */
     public static MapController getInstance() {
@@ -66,6 +72,7 @@ public class MapController implements LocalityHttp.LocalityCallback,
         this.map = map;
         this.context = ctx;
 
+        this.maxDistanceWalk = Float.parseFloat(ctx.getString(R.string.max_distance_walk));
         this.initialZoom = Float.parseFloat(ctx.getString(R.string.initial_zoom));
 
         this.localityMarkers = new ArrayList<>();
@@ -146,6 +153,56 @@ public class MapController implements LocalityHttp.LocalityCallback,
         this.user.centerOnUser();
     }
 
+    @Override
+    public void onEmergencyClick() {
+
+        float[] results = new float[1];
+        float minDistance = -1;
+        LocalityMarker closest = null;
+        userLocation = this.user.getUserPosition();
+
+        for (LocalityMarker lm : localityMarkers)
+            if (lm.getLocality() instanceof Toilet) {
+                Location.distanceBetween(userLocation.getLatitude(), userLocation.getLongitude(),
+                        lm.getLocality().getLocation().latitude, lm.getLocality().getLocation().longitude, results);
+
+                if ((results[0] < minDistance) || (minDistance == -1)) {
+                    minDistance = results[0];
+                    closest = lm;
+                }
+            }
+
+
+        if (closest != null) {
+            closest.getMarker().showInfoWindow();
+            this.animateCameraPositionZoom(closest.getMarker().getPosition(), null);
+        }
+    }
+
+    @Override
+    public void onTraceRouteClick(Locality locality) {
+
+        char mode;
+        float[] results = new float[1];
+
+        userLocation = this.user.getUserPosition();
+
+        Location.distanceBetween(userLocation.getLatitude(), userLocation.getLongitude(),
+                locality.getLocation().latitude, locality.getLocation().longitude, results);
+        if(results[0] <= maxDistanceWalk)
+            mode = 'w';
+        else
+            mode = 'd';
+
+
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=" + locality.getLocation().latitude + "," + locality.getLocation().longitude + "&mode=" + mode);
+
+
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        context.startActivity(mapIntent);
+    }
+
     private void applyFilter() {
 
         if (filter == null)
@@ -155,6 +212,10 @@ public class MapController implements LocalityHttp.LocalityCallback,
             if (loc != null && loc.getMarker() != null)
                 loc.getMarker().setVisible(loc.matchesFilter(filter));
     }
+
+
+
+
 
     @Override
     public void onFilterChanged(Filter filter) {

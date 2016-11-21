@@ -21,6 +21,7 @@ public class UserController implements
 
     private GoogleApiClient mGoogleApiClient;
     private MapController map;
+    private Location userPosition;
 
     private Boolean firstPosition;
 
@@ -36,6 +37,18 @@ public class UserController implements
                 .build();
 
         mGoogleApiClient.connect();
+    }
+
+    public Location getUserPosition() {
+
+        // Try to get current location, may be null
+        try {
+            userPosition = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        } catch (SecurityException se) {
+            Log.e("UserController", "Error on LocationServices", se);
+        }
+
+        return userPosition;
     }
 
     public void centerOnUser() {
@@ -56,7 +69,7 @@ public class UserController implements
                 return;
             }
 
-            // If it' really null, fire location update
+            // If its really null, fire location update
             LocationRequest mLocationRequest = new LocationRequest();
             mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
@@ -91,6 +104,8 @@ public class UserController implements
         Log.i("UserController", "GoogleApiClient location changed!");
 
         if (this.map != null && location != null) {
+
+            userPosition = location;
 
             // First time, when open app, no animation
             if (this.firstPosition) {

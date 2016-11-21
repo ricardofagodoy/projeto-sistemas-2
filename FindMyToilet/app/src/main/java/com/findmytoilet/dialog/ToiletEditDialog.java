@@ -20,6 +20,7 @@ import com.findmytoilet.enums.Sex;
 import com.findmytoilet.model.Locality;
 import com.findmytoilet.model.Toilet;
 import com.findmytoilet.network.LocalityHttp;
+import com.findmytoilet.persistence.SharedPreferencesPersistence;
 import com.google.android.gms.maps.model.Marker;
 
 public class ToiletEditDialog extends Dialog {
@@ -65,6 +66,22 @@ public class ToiletEditDialog extends Dialog {
         final FloatingActionButton paid = (FloatingActionButton) findViewById(R.id.paid);
 
 
+
+
+        //Get the rating preference for this toilet
+        Integer i = SharedPreferencesPersistence.getPreferenceRating().get(toilet.getId());
+
+        if ((i != null) && (i == 1)) {
+            like.setTag("pressed");
+            like.setImageResource(R.drawable.likepressed);
+        }
+
+        if ((i != null) && (i == -1)) {
+            dislike.setTag("pressed");
+            dislike.setImageResource(R.drawable.dislikepressed);
+        }
+
+
         ((TextView) findViewById(R.id.address)).setText(toilet.getStreetName());
 
         switch (toilet.getSex()){
@@ -78,8 +95,6 @@ public class ToiletEditDialog extends Dialog {
                 female.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context, R.color.filterColorSelected)));
                 break;
         }
-
-
 
         if (toilet.isBaby()) {
             babyActive = true;
@@ -181,14 +196,19 @@ public class ToiletEditDialog extends Dialog {
                     like.setImageResource(R.drawable.likepressed);
                     dislike.setImageResource(R.drawable.dislike);
 
-                    if (dislike.getTag().equals("pressed"))
+                    if (dislike.getTag().equals("pressed")) {
                         LocalityHttp.getInstance().rateLocality(toilet.getId(), 2);
-                    else
+                        toilet.setRating(toilet.getRating() + 2);
+                    }
+                    else {
                         LocalityHttp.getInstance().rateLocality(toilet.getId(), 1);
+                        toilet.setRating(toilet.getRating() + 1);
+                    }
 
                     like.setTag("pressed");
                     dislike.setTag("");
 
+                    SharedPreferencesPersistence.setPreferenceRating(toilet.getId(), 1);
                 }
             }
         });
@@ -201,14 +221,19 @@ public class ToiletEditDialog extends Dialog {
                     dislike.setImageResource(R.drawable.dislikepressed);
                     like.setImageResource(R.drawable.like);
 
-                    if (like.getTag().equals("pressed"))
+                    if (like.getTag().equals("pressed")) {
                         LocalityHttp.getInstance().rateLocality(toilet.getId(), -2);
-                    else
+                        toilet.setRating(toilet.getRating() - 2);
+                    }
+                    else {
                         LocalityHttp.getInstance().rateLocality(toilet.getId(), -1);
+                        toilet.setRating(toilet.getRating() - 1);
+                    }
 
                     dislike.setTag("pressed");
                     like.setTag("");
 
+                    SharedPreferencesPersistence.setPreferenceRating(toilet.getId(), -1);
                 }
             }
         });

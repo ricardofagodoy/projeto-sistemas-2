@@ -27,9 +27,12 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
     private static final String TAG = InformationWindowAdapter.class.getName();
 
     private Context context;
+    private Geocoder geocoder;
+    private List<Address> addresses;
 
     public InformationWindowAdapter(Context context) {
         this.context = context;
+        addresses = null;
     }
 
     private View loadView(Marker marker) {
@@ -88,7 +91,7 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
                         ((TextView) view.findViewById(R.id.address)).setText(locality.getStreetName());
                     }
-                    toggleEmergencyButton(true);
+                    toggleEmergencyButton(true, locality);
 
                     break;
 
@@ -112,7 +115,7 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                         ((TextView) view.findViewById(R.id.address)).setText(locality.getStreetName());
 
                     }
-                    toggleEmergencyButton(true);
+                    toggleEmergencyButton(true, locality);
                     break;
 
                 case PIN:
@@ -120,13 +123,14 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
                     view = ((Activity) context).getLayoutInflater().inflate(viewId, null);
 
                     try {
-                        Geocoder geocoder;
-                        List<Address> addresses;
+
                         geocoder = new Geocoder(context, Locale.getDefault());
 
-                        addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
+                        if ((addresses != null) && (addresses.size() > 0)) {
+                            addresses = geocoder.getFromLocation(marker.getPosition().latitude, marker.getPosition().longitude, 1);
 
-                        ((TextView) view.findViewById(R.id.address)).setText(addresses.get(0).getAddressLine(0));
+                            ((TextView) view.findViewById(R.id.address)).setText(addresses.get(0).getAddressLine(0));
+                        }
 
                     }catch(Exception e){
                         Log.e(TAG, e.getMessage());
@@ -134,13 +138,13 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
 
 
 
-                    toggleEmergencyButton(false);
+                    toggleEmergencyButton(false, null);
                     break;
 
                 default:
                     viewId = R.layout.new_location_window;
                     view = ((Activity) context).getLayoutInflater().inflate(viewId, null);
-                    toggleEmergencyButton(false);
+                    toggleEmergencyButton(false, null);
                     break;
             }
 
@@ -157,11 +161,11 @@ public class InformationWindowAdapter implements GoogleMap.InfoWindowAdapter {
         return this.loadView(marker);
     }
 
-    private void toggleEmergencyButton(boolean state) {
+    private void toggleEmergencyButton(boolean state, Locality locality) {
 
         ActionButtonFragment actionButtons = (ActionButtonFragment) ((Activity) context).
                 getFragmentManager().findFragmentById(R.id.actions);
 
-        actionButtons.changeActionState(state);
+        actionButtons.changeActionState(state, locality);
     }
 }

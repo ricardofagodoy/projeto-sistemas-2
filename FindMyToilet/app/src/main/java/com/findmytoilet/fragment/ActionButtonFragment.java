@@ -7,10 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.findmytoilet.R;
+import com.findmytoilet.model.Locality;
+import com.google.android.gms.maps.model.LatLng;
 
 public class ActionButtonFragment extends Fragment {
 
     private static final String TAG = ActionButtonFragment.class.getName();
+    private Locality locality;
+    private View emergencyButton;
+    private View route;
 
     private ActionButtonCallback mListener;
 
@@ -33,6 +38,24 @@ public class ActionButtonFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_action_button, container, false);
 
         View userLocation = view.findViewById(R.id.userLocation);
+        emergencyButton = view.findViewById(R.id.emergency);
+        route = view.findViewById(R.id.traceRoute);
+
+        emergencyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null)
+                    mListener.onEmergencyClick();
+            }
+        });
+
+        route.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null)
+                    mListener.onTraceRouteClick(locality);
+            }
+        });
 
         userLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +68,9 @@ public class ActionButtonFragment extends Fragment {
         return view;
     }
 
-    public void changeActionState(boolean state) {
+    public void changeActionState(boolean state, Locality locality) {
 
-        View emergencyButton = this.getView().findViewById(R.id.emergency);
-        View route = this.getView().findViewById(R.id.traceRoute);
+        this.locality = locality;
 
         if (state) {
             emergencyButton.setVisibility(View.GONE);
@@ -66,5 +88,7 @@ public class ActionButtonFragment extends Fragment {
 
     public interface ActionButtonCallback {
         void onCenterUserClick();
+        void onEmergencyClick();
+        void onTraceRouteClick(Locality locality);
     }
 }

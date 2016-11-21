@@ -69,7 +69,7 @@ public class MapCallback implements OnMapReadyCallback, GoogleMap.OnMapLongClick
 
     @Override
     public void onMapClick(LatLng point) {
-        actionButtons.changeActionState(false);
+        actionButtons.changeActionState(false, null);
     }
 
     @Override

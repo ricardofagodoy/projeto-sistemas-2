@@ -1,27 +1,20 @@
 package com.findmytoilet.fragment;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.findmytoilet.R;
 import com.findmytoilet.enums.Sex;
 import com.findmytoilet.model.Filter;
-
-import java.io.IOException;
+import com.findmytoilet.persistence.SharedPreferencesPersistence;
 
 public class FilterFragment extends Fragment {
 
@@ -30,9 +23,6 @@ public class FilterFragment extends Fragment {
     private Context context;
     private FilterCallback mListener;
     private Filter filter;
-    private SharedPreferences pref;
-    private ObjectMapper mapper;
-    private Editor edit;
 
     private boolean toiletActive;
     private boolean waterActive;
@@ -58,24 +48,7 @@ public class FilterFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        try {
-            mapper = new ObjectMapper();
-
-            pref = PreferenceManager.getDefaultSharedPreferences(context);
-
-            String filtersJSON = pref.getString("filters", null);
-
-            if (filtersJSON != null)
-                filter = mapper.readValue(filtersJSON, Filter.class);
-
-        }catch(IOException e)
-        {
-            Log.e("Getting user filters",e.getMessage());
-        }
-
-
-
+        filter = SharedPreferencesPersistence.getPreferenceFilters();
     }
 
     @Override
@@ -316,16 +289,7 @@ public class FilterFragment extends Fragment {
         if (mListener != null)
             mListener.onFilterChanged(filter);
 
-        try {
-             edit = pref.edit();
-
-            edit.putString("filters", mapper.writeValueAsString(filter));
-
-            edit.commit();
-        }catch(Exception e){
-            Log.e(TAG, e.getMessage());
-        }
-
+        SharedPreferencesPersistence.setPreferenceFilters(filter);
     }
 
     @Override

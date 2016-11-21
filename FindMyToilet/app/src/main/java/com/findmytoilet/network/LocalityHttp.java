@@ -270,7 +270,8 @@ public class LocalityHttp {
 
             addresses = geocoder.getFromLocation(locality.getLocation().latitude, locality.getLocation().longitude, 1);
 
-            locality.setStreetName(addresses.get(0).getAddressLine(0));
+            if ((addresses != null) && (addresses.size() > 0))
+                locality.setStreetName(addresses.get(0).getAddressLine(0));
 
             //Object to JSON in String
             String jsonInString = mapper.writeValueAsString(locality);
