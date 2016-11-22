@@ -2,5 +2,6 @@
 <resources>
     <string name="initial_zoom" format="float">16.0f</string>
     <string name="max_distance_walk" format="float">1000</string>
-    <string name="url_api">http://192.168.0.107:3000/locality</string>
+    <string name="url_api">http://192.168.0.11:3000/locality</string>
+    <!--string name="url_api">http://191.8.95.4:3000/locality</string-->
 </resources>

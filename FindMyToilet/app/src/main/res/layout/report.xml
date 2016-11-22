@@ -5,6 +5,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal|center_vertical"
+    android:background="@drawable/rounded_corner"
     android:padding="@dimen/ReportDialogPadding">
 
 <TableLayout
@@ -36,6 +37,7 @@
 
         <EditText android:id="@+id/reason"
             android:layout_width="150dp"
+            android:maxLength="80"
             android:layout_marginLeft="15dp" />
     </TableRow>
 

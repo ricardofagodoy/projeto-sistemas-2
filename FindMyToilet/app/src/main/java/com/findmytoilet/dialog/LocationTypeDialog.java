@@ -29,6 +29,9 @@ public class LocationTypeDialog extends Dialog {
         this.setContentView(R.layout.fragment_location_type);
         this.setCancelable(true);
 
+        View v = getWindow().getDecorView();
+        v.setBackgroundResource(android.R.color.transparent);
+
         dialogs.add(this);
 
         View toiletType = findViewById(R.id.toiletType);

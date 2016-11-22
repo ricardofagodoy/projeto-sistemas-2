@@ -51,11 +51,14 @@ public class ToiletEditDialog extends Dialog {
         this.setContentView(R.layout.edit_toilet);
         this.setCancelable(true);
 
+
+        View v = getWindow().getDecorView();
+        v.setBackgroundResource(android.R.color.transparent);
+
         View reportButton = findViewById(R.id.report);
         View editButton = findViewById(R.id.edit);
         final ImageView like = (ImageView) findViewById(R.id.toiletLike);
         final ImageView dislike = (ImageView) findViewById(R.id.toiletDislike);
-
 
         final FloatingActionButton unisex = (FloatingActionButton) findViewById(R.id.unisex);
         final FloatingActionButton male = (FloatingActionButton) findViewById(R.id.male);

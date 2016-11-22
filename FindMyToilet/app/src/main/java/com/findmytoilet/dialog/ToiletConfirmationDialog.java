@@ -41,6 +41,9 @@ public class ToiletConfirmationDialog extends Dialog {
         this.setContentView(R.layout.fragment_toilet_confirmation);
         this.setCancelable(true);
 
+        View v = getWindow().getDecorView();
+        v.setBackgroundResource(android.R.color.transparent);
+
         LocationTypeDialog.dialogs.add(this);
 
         final FloatingActionButton clean = (FloatingActionButton) findViewById(R.id.baby);

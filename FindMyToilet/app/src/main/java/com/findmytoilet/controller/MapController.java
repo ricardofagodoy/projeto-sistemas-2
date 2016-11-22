@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.findmytoilet.R;
 import com.findmytoilet.enums.MarkerTags;
@@ -162,21 +163,23 @@ public class MapController implements LocalityHttp.LocalityCallback,
         userLocation = this.user.getUserPosition();
 
         for (LocalityMarker lm : localityMarkers)
-            if (lm.getLocality() instanceof Toilet) {
-                Location.distanceBetween(userLocation.getLatitude(), userLocation.getLongitude(),
-                        lm.getLocality().getLocation().latitude, lm.getLocality().getLocation().longitude, results);
+            if (lm.getLocality() instanceof Toilet)
+                if (lm.matchesFilter(filter)) {
+                    Location.distanceBetween(userLocation.getLatitude(), userLocation.getLongitude(),
+                            lm.getLocality().getLocation().latitude, lm.getLocality().getLocation().longitude, results);
 
-                if ((results[0] < minDistance) || (minDistance == -1)) {
-                    minDistance = results[0];
-                    closest = lm;
+                    if ((results[0] < minDistance) || (minDistance == -1)) {
+                        minDistance = results[0];
+                        closest = lm;
+                    }
                 }
-            }
-
 
         if (closest != null) {
             closest.getMarker().showInfoWindow();
             this.animateCameraPositionZoom(closest.getMarker().getPosition(), null);
         }
+        else
+            Toast.makeText(context, "Nenhum banheiro encontrado!", Toast.LENGTH_LONG).show();
     }
 
     @Override

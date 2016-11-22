@@ -27,6 +27,9 @@ public class ReportDialog extends Dialog {
         this.setContentView(R.layout.report);
         this.setCancelable(true);
 
+        View v = getWindow().getDecorView();
+        v.setBackgroundResource(android.R.color.transparent);
+
         View reportButton = findViewById(R.id.report);
         final EditText reason = (EditText) findViewById(R.id.reason);
 

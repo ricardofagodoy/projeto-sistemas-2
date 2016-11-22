@@ -43,6 +43,9 @@ public class WaterEditDialog extends Dialog{
         this.setContentView(R.layout.edit_water);
         this.setCancelable(true);
 
+        View v = getWindow().getDecorView();
+        v.setBackgroundResource(android.R.color.transparent);
+
         View reportButton = findViewById(R.id.report);
         View editButton = findViewById(R.id.edit);
         final ImageView like = (ImageView) findViewById(R.id.waterLike);

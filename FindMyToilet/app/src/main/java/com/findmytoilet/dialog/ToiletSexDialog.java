@@ -28,6 +28,9 @@ public class ToiletSexDialog extends Dialog {
 
         LocationTypeDialog.dialogs.add(this);
 
+        View v = getWindow().getDecorView();
+        v.setBackgroundResource(android.R.color.transparent);
+
         View unisex = findViewById(R.id.unisex);
         View male = findViewById(R.id.male);
         View female = findViewById(R.id.female);

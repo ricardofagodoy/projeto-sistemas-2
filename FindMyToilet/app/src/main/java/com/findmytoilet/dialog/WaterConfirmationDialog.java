@@ -40,6 +40,9 @@ public class WaterConfirmationDialog extends Dialog {
 
         LocationTypeDialog.dialogs.add(this);
 
+        View v = getWindow().getDecorView();
+        v.setBackgroundResource(android.R.color.transparent);
+
         final FloatingActionButton cold = (FloatingActionButton) findViewById(R.id.cold);
         final FloatingActionButton filtered = (FloatingActionButton) findViewById(R.id.filtered);
 
